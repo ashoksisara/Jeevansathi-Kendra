@@ -1,67 +1,26 @@
 {
   "project_info": {
-    "project_number": "546131385866",
-    "project_id": "matri-24e1f",
-    "storage_bucket": "matri-24e1f.appspot.com"
+    "project_number": "224231458517",
+    "project_id": "jeevansathi-kendra",
+    "storage_bucket": "jeevansathi-kendra.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:546131385866:android:6a322f568dee5d13f189f3",
+        "mobilesdk_app_id": "1:224231458517:android:af531cac4a25abbc86845c",
         "android_client_info": {
-          "package_name": "com.activeitzone.active_matrimonial_flutter_app.active_matrimonial_flutter_app"
+          "package_name": "com.jeevansathi.kendra"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "546131385866-1t9bah3umuh1i7a4c9el284k2r11pjmc.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.activeitzone.active_matrimonial_flutter_app.active_matrimonial_flutter_app",
-            "certificate_hash": ""
-          }
-        },
-        {
-          "client_id": "546131385866-7n2oieju755v7lpr23ochu2e6n5m9og5.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.activeitzone.active_matrimonial_flutter_app.active_matrimonial_flutter_app",
-            "certificate_hash": ""
-          }
-        },
-        {
-          "client_id": "546131385866-gde4ocn9egbudkok3vp03nfs9u0n0l3k.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.activeitzone.active_matrimonial_flutter_app.active_matrimonial_flutter_app",
-            "certificate_hash": ""
-          }
-        },
-        {
-          "client_id": "546131385866-8mfspe2d7g6bu9fanu6ro2dak18mc8v5.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": ""
+          "current_key": "AIzaSyACUvMr-f8sWop0PUN-bwSRybxhMO3IdO8"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "546131385866-8mfspe2d7g6bu9fanu6ro2dak18mc8v5.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "546131385866-cee5gqj38fhssq57cndlbhljuhkmtena.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.activeitzone.activematrimonialflutterapp.activeMatrimonialFlutterApp"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
