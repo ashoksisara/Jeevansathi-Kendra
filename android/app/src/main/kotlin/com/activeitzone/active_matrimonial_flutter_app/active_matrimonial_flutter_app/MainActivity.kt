@@ -1,4 +1,4 @@
-package com.activeitzone.active_matrimonial_flutter_app.active_matrimonial_flutter_app
+package com.jeevansathi.kendra
 
 import io.flutter.embedding.android.FlutterActivity
 
