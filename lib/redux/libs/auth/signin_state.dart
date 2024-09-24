@@ -8,7 +8,7 @@ class SignInState {
   bool? isObscure;
 
   // controllers
-  TextEditingController? emailController = TextEditingController();
+  TextEditingController? emailPhoneController = TextEditingController();
   TextEditingController? passwordController = TextEditingController();
 
   GlobalKey<FormState> signInFormKey = GlobalKey<FormState>();
@@ -31,7 +31,7 @@ class SignInState {
         passwordErrorText = '',
         isObscure = true,
         isCustomLogin = false,
-        emailController = TextEditingController(text: ''),
+        emailPhoneController = TextEditingController(text: ''),
         passwordController = TextEditingController(text: ''),
         isLogin = false;
 }

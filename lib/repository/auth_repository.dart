@@ -136,6 +136,7 @@ class AuthRepository {
       password,
       passwordConfirmation,
       recapthca,
+      phone,
       referral}) async {
     var baseUrl = "${AppConfig.BASE_URL}/signup";
     var postBody = jsonEncode({
@@ -148,6 +149,7 @@ class AuthRepository {
       'password': password,
       'password_confirmation': passwordConfirmation,
       'referral_code': referral,
+      'phone': phone,
       'g-recaptcha-response': recapthca
     });
     var response = await http.post(Uri.parse(baseUrl),

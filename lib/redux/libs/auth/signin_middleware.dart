@@ -33,7 +33,7 @@ ThunkAction<AppState> signInMiddleware(BuildContext context,
           MaterialPageRoute(builder: (context) => Main()), (route) => false);
 
       // clear login controllers
-      store.state.signInState!.emailController!.clear();
+      store.state.signInState!.emailPhoneController!.clear();
       store.state.signInState!.passwordController!.clear();
 
       // firebase store fcm token fire

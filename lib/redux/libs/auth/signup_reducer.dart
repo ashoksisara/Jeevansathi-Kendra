@@ -52,6 +52,7 @@ SignUpState? sign_up_reducer(SignUpState? state, dynamic action) {
           passwordConfirmation: state.confirmPasswordController!.text,
           referral: state.referController!.text,
           recapthca: state.googleRecaptchaKey,
+          phone: state.phoneController!.text
         ),
       );
     }

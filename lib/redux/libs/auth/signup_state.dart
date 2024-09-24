@@ -34,6 +34,7 @@ class SignUpState {
   TextEditingController? firstNameController = TextEditingController();
   TextEditingController? lastNameController = TextEditingController();
   TextEditingController? emailController = TextEditingController();
+  TextEditingController? phoneController = TextEditingController();
   TextEditingController? passwordController = TextEditingController();
   TextEditingController? confirmPasswordController = TextEditingController();
   TextEditingController? dobController = TextEditingController();

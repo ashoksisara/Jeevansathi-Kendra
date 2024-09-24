@@ -35,7 +35,7 @@ class _LoginState extends State<Login> {
   bool? isFacebook = settingIsActive('facebook_login_activation', '1');
   bool? isTwitter = settingIsActive('twitter_login_activation', "1");
 
-  bool? isOtpSystem = store.state.addonState!.data?.otpSystem ?? false;
+  // bool? isOtpSystem = store.state.addonState!.data?.otpSystem ?? false;
 
   @override
   Widget build(BuildContext context) {
@@ -80,100 +80,115 @@ class _LoginState extends State<Login> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // GroupItemWithChild(
+                        //   title: isOtpSystem!
+                        //       ? state.signInState!.isPhone!
+                        //           ? "Phone"
+                        //           : "Email"
+                        //       : "Email",
+                        //   style: Styles.bold_app_accent_12,
+                        //   child: isOtpSystem!
+                        //       ? SizedBox(
+                        //           child: state.signInState!.isPhone!
+                        //               ? InternationalPhoneNumberInput(
+                        //                   onInputChanged: (PhoneNumber number) {
+                        //                     store.dispatch(
+                        //                       SetPhoneNumberAction(
+                        //                         payload: number.phoneNumber,
+                        //                       ),
+                        //                     );
+                        //                   },
+                        //                   countries: store.state.commonState!
+                        //                       .countriesToString(),
+                        //                   spaceBetweenSelectorAndTextField: 0,
+                        //                   selectorConfig: const SelectorConfig(
+                        //                       selectorType:
+                        //                           PhoneInputSelectorType
+                        //                               .DIALOG),
+                        //                   inputDecoration: InputDecoration(
+                        //                     filled: true,
+                        //                     fillColor: MyTheme.solitude,
+                        //                     enabledBorder: OutlineInputBorder(
+                        //                       borderSide: BorderSide.none,
+                        //                       borderRadius:
+                        //                           BorderRadius.circular(12),
+                        //                     ),
+                        //                     focusedBorder: OutlineInputBorder(
+                        //                         borderRadius:
+                        //                             BorderRadius.circular(16),
+                        //                         borderSide: const BorderSide(
+                        //                             color: Colors.transparent)),
+                        //                     isDense: true,
+                        //                     hintText: "01XXX XXX XXX",
+                        //                     hintStyle:
+                        //                         Styles.regular_gull_grey_12,
+                        //                     border: const OutlineInputBorder(
+                        //                       borderRadius: BorderRadius.all(
+                        //                           Radius.circular(12)),
+                        //                     ),
+                        //                   ),
+                        //                 )
+                        //               : TextField(
+                        //                   controller: store.state.signInState!
+                        //                       .emailController,
+                        //                   onTap: () {
+                        //                     store.dispatch(ClearAction());
+                        //                   },
+                        //                   decoration: InputStyle
+                        //                       .inputDecoration_text_field(
+                        //                     hint: "johndoe@example.com",
+                        //                   ),
+                        //                 ),
+                        //         )
+                        //       : TextField(
+                        //           controller:
+                        //               store.state.signInState!.emailController,
+                        //           onTap: () {
+                        //             store.dispatch(ClearAction());
+                        //           },
+                        //           decoration:
+                        //               InputStyle.inputDecoration_text_field(
+                        //             hint: "johndoe@example.com",
+                        //           ),
+                        //         ),
+                        // ),
                         GroupItemWithChild(
-                          title: isOtpSystem!
-                              ? state.signInState!.isPhone!
-                                  ? "Phone"
-                                  : "Email"
-                              : "Email",
+                          title: "Email or Phone",
                           style: Styles.bold_app_accent_12,
-                          child: isOtpSystem!
-                              ? SizedBox(
-                                  child: state.signInState!.isPhone!
-                                      ? InternationalPhoneNumberInput(
-                                          onInputChanged: (PhoneNumber number) {
-                                            store.dispatch(
-                                              SetPhoneNumberAction(
-                                                payload: number.phoneNumber,
-                                              ),
-                                            );
-                                          },
-                                          countries: store.state.commonState!
-                                              .countriesToString(),
-                                          spaceBetweenSelectorAndTextField: 0,
-                                          selectorConfig: const SelectorConfig(
-                                              selectorType:
-                                                  PhoneInputSelectorType
-                                                      .DIALOG),
-                                          inputDecoration: InputDecoration(
-                                            filled: true,
-                                            fillColor: MyTheme.solitude,
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide.none,
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(16),
-                                                borderSide: const BorderSide(
-                                                    color: Colors.transparent)),
-                                            isDense: true,
-                                            hintText: "01XXX XXX XXX",
-                                            hintStyle:
-                                                Styles.regular_gull_grey_12,
-                                            border: const OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(12)),
-                                            ),
-                                          ),
-                                        )
-                                      : TextField(
-                                          controller: store.state.signInState!
-                                              .emailController,
-                                          onTap: () {
-                                            store.dispatch(ClearAction());
-                                          },
-                                          decoration: InputStyle
-                                              .inputDecoration_text_field(
-                                            hint: "johndoe@example.com",
-                                          ),
-                                        ),
-                                )
-                              : TextField(
-                                  controller:
-                                      store.state.signInState!.emailController,
-                                  onTap: () {
-                                    store.dispatch(ClearAction());
-                                  },
-                                  decoration:
-                                      InputStyle.inputDecoration_text_field(
-                                    hint: "johndoe@example.com",
-                                  ),
-                                ),
-                        ),
-                        Const.height5,
-                        if (state.addonState?.data?.otpSystem ?? false)
-                          InkWell(
+                          child: TextField(
+                            controller: store.state.signInState!
+                                .emailPhoneController,
                             onTap: () {
-                              store.dispatch(IsPhoneOrEmailChangeAction());
+                              store.dispatch(ClearAction());
                             },
-                            child: SizedBox(
-                              width: DeviceInfo(context).width,
-                              child: Text(
-                                isOtpSystem!
-                                    ? state.signInState!.isPhone!
-                                        ? AppLocalizations.of(context)!
-                                            .common_screen_use_email
-                                        : AppLocalizations.of(context)!
-                                            .common_screen_use_phone
-                                    : AppLocalizations.of(context)!
-                                        .common_screen_use_email,
-                                textAlign: TextAlign.right,
-                                style: Styles.italic_app_accent_10_underline,
-                              ),
+                            decoration: InputStyle
+                                .inputDecoration_text_field(
+                              hint: "email or phone",
                             ),
                           ),
+                        ),
+                        Const.height5,
+                        // if (state.addonState?.data?.otpSystem ?? false)
+                        //   InkWell(
+                        //     onTap: () {
+                        //       store.dispatch(IsPhoneOrEmailChangeAction());
+                        //     },
+                        //     child: SizedBox(
+                        //       width: DeviceInfo(context).width,
+                        //       child: Text(
+                        //         isOtpSystem!
+                        //             ? state.signInState!.isPhone!
+                        //                 ? AppLocalizations.of(context)!
+                        //                     .common_screen_use_email
+                        //                 : AppLocalizations.of(context)!
+                        //                     .common_screen_use_phone
+                        //             : AppLocalizations.of(context)!
+                        //                 .common_screen_use_email,
+                        //         textAlign: TextAlign.right,
+                        //         style: Styles.italic_app_accent_10_underline,
+                        //       ),
+                        //     ),
+                        //   ),
                         Column(
                           children: [
                             Const.height5,
@@ -249,7 +264,15 @@ class _LoginState extends State<Login> {
                           height: 40,
                         ),
                         InkWell(
-                          onTap: () => store.dispatch(LoginRequest()),
+                          onTap: () {
+                            bool isEmail = true;
+                            if(isValidEmail(state.signInState!.emailPhoneController!.text)){
+                              isEmail = true;
+                            }
+                            store.dispatch(LoginRequest(
+                            isEmail: isEmail
+                          ));
+                          },
                           child: MyGradientContainer(
                             text: state.signInState!.isLogin == false
                                 ? Text(

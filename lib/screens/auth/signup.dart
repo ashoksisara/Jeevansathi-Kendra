@@ -11,6 +11,7 @@ import 'package:active_matrimonial_flutter_app/helpers/device_info.dart';
 import 'package:active_matrimonial_flutter_app/helpers/main_helpers.dart';
 import 'package:active_matrimonial_flutter_app/helpers/navigator_push.dart';
 import 'package:active_matrimonial_flutter_app/redux/libs/add_on/addon_check_middleware.dart';
+import 'package:active_matrimonial_flutter_app/redux/libs/auth/signin_reducer.dart';
 import 'package:active_matrimonial_flutter_app/redux/libs/auth/signup_action.dart';
 import 'package:active_matrimonial_flutter_app/screens/core.dart';
 import 'package:flutter/gestures.dart';
@@ -39,7 +40,7 @@ class _SignUpState extends State<SignUp> {
   bool? isFacebook = settingIsActive('facebook_login_activation', '1');
   bool? isTwitter = settingIsActive('twitter_login_activation', "1");
 
-  bool? isOtpSystem = store.state.addonState!.data!.otpSystem ?? false;
+  // bool? isOtpSystem = store.state.addonState!.data!.otpSystem ?? false;
   bool? isReferralSystem =
       store.state.addonState!.data!.referralSystem ?? false;
 
@@ -287,130 +288,118 @@ class _SignUpState extends State<SignUp> {
 
                                 // email or phone
                                 GroupItemWithChild(
-                                  title: isOtpSystem!
-                                      ? state.signUpState!.emailOrPhone!
-                                          ? "Phone"
-                                          : "Email"
-                                      : "Email",
+                                  title: "Email",
                                   style: Styles.bold_app_accent_12,
-                                  child: isOtpSystem!
-                                      ? SizedBox(
-                                          child: state
-                                                  .signUpState!.emailOrPhone!
-                                              ? InternationalPhoneNumberInput(
-                                                  onInputChanged:
-                                                      (PhoneNumber number) {
-                                                    store.dispatch(
-                                                      SignupSetPhoneNumberAction(
-                                                          payload: number),
-                                                    );
-                                                  },
-                                                  spaceBetweenSelectorAndTextField:
-                                                      0,
-                                                  countries: store
-                                                      .state.commonState!
-                                                      .countriesToString(),
-                                                  selectorConfig:
-                                                      const SelectorConfig(
-                                                          selectorType:
-                                                              PhoneInputSelectorType
-                                                                  .DIALOG),
-                                                  // inputBorder: InputBorder.none,
-                                                  inputDecoration: InputStyle
-                                                      .inputDecoration_text_field(
-                                                    hint: "01XXX XXX XXX",
-                                                  ),
-                                                )
-                                              : TextFormField(
-                                                  controller: store
-                                                      .state
-                                                      .signUpState
-                                                      ?.emailController,
-                                                  validator: (value) {
-                                                    // Check if this field is empty
-                                                    if (value == null ||
-                                                        value.isEmpty) {
-                                                      return 'Please enter email address';
-                                                    }
+                                  child: TextFormField(
+                                    controller: store.state.signUpState
+                                        ?.emailController,
+                                    validator: (value) {
+                                      // Check if this field is empty
+                                      if (value == null ||
+                                          value.isEmpty) {
+                                        return 'Please enter email address';
+                                      }
 
-                                                    // using regular expression
-                                                    if (!RegExp(r'\S+@\S+\.\S+')
-                                                        .hasMatch(value)) {
-                                                      return "Please enter a valid email address";
-                                                    }
+                                      // using regular expression
+                                      if (!RegExp(r'\S+@\S+\.\S+')
+                                          .hasMatch(value)) {
+                                        return "Please enter a valid email address";
+                                      }
 
-                                                    // the email is valid
-                                                    return null;
-                                                  },
-                                                  decoration: InputStyle
-                                                      .inputDecoration_text_field(
-                                                    hint: "johndoe@example.com",
-                                                    // suffixIcon: Icon(
-                                                    //   Icons.expand_more,
-                                                    // )
-                                                  ),
-                                                ),
-                                        )
-                                      : TextFormField(
-                                          controller: store.state.signUpState
-                                              ?.emailController,
-                                          validator: (value) {
-                                            // Check if this field is empty
-                                            if (value == null ||
-                                                value.isEmpty) {
-                                              return 'Please enter email address';
-                                            }
-
-                                            // using regular expression
-                                            if (!RegExp(r'\S+@\S+\.\S+')
-                                                .hasMatch(value)) {
-                                              return "Please enter a valid email address";
-                                            }
-
-                                            // the email is valid
-                                            return null;
-                                          },
-                                          decoration: InputStyle
-                                              .inputDecoration_text_field(
-                                            hint: "johndoe@example.com",
-                                            // suffixIcon: Icon(
-                                            //   Icons.expand_more,
-                                            // )
-                                          ),
-                                        ),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-
-                                // change email and password field
-                                if (state.addonState?.data?.otpSystem ?? false)
-                                  InkWell(
-                                    onTap: () {
-                                      store.dispatch(
-                                          SignupSetEmailOrPhoneAction());
+                                      // the email is valid
+                                      return null;
                                     },
-                                    child: SizedBox(
-                                      width: DeviceInfo(context).width,
-                                      child: Text(
-                                        isOtpSystem!
-                                            ? AppLocalizations.of(context)!
-                                                .common_screen_use_email
-                                            : state.signUpState!.emailOrPhone!
-                                                ? AppLocalizations.of(context)!
-                                                    .common_screen_use_phone
-                                                : AppLocalizations.of(context)!
-                                                    .common_screen_use_email,
-                                        textAlign: TextAlign.right,
-                                        style: const TextStyle(
-                                          fontStyle: FontStyle.italic,
-                                          fontSize: 10,
-                                          color: MyTheme.app_accent_color,
-                                          decoration: TextDecoration.underline,
-                                        ),
-                                      ),
+                                    decoration: InputStyle
+                                        .inputDecoration_text_field(
+                                      hint: "johndoe@example.com",
+                                      // suffixIcon: Icon(
+                                      //   Icons.expand_more,
+                                      // )
                                     ),
                                   ),
+                                ),
+                                Const.height18,
+                                GroupItemWithChild(
+                                  title: "Phone",
+                                  style: Styles.bold_app_accent_12,
+                                  child: TextFormField(
+                                    controller: store.state.signUpState
+                                        ?.phoneController,
+                                    validator: (value) {
+                                      // Check if this field is empty
+                                      if (value == null ||
+                                          value.isEmpty) {
+                                        return 'Please phone';
+                                      }
+
+                                      // using regular expression
+                                      if (!isValidPhone(value)) {
+                                        return "Please enter a valid phone number";
+                                      }
+
+                                      // the phone is valid
+                                      return null;
+                                    },
+                                    decoration: InputStyle
+                                        .inputDecoration_text_field(
+                                      hint: "9876543210",
+                                      // suffixIcon: Icon(
+                                      //   Icons.expand_more,
+                                      // )
+                                    ),
+                                  ),
+                                ),
+                                // const SizedBox(
+                                //   height: 5,
+                                // ),
+
+                                // change email and password field
+                                // if (state.addonState?.data?.otpSystem ?? false)
+                                //   InkWell(
+                                //     onTap: () {
+                                //       store.dispatch(
+                                //           SignupSetEmailOrPhoneAction());
+                                //     },
+                                //     child: SizedBox(
+                                //       width: DeviceInfo(context).width,
+                                //       child: Text(
+                                //         isOtpSystem!
+                                //             ? AppLocalizations.of(context)!
+                                //                 .common_screen_use_email
+                                //             : state.signUpState!.emailOrPhone!
+                                //                 ? AppLocalizations.of(context)!
+                                //                     .common_screen_use_phone
+                                //                 : AppLocalizations.of(context)!
+                                //                     .common_screen_use_email,
+                                //         textAlign: TextAlign.right,
+                                //         style: const TextStyle(
+                                //           fontStyle: FontStyle.italic,
+                                //           fontSize: 10,
+                                //           color: MyTheme.app_accent_color,
+                                //           decoration: TextDecoration.underline,
+                                //         ),
+                                //       ),
+                                //     ),
+                                //   ),
+                                // InkWell(
+                                //   onTap: () {
+                                //     store.dispatch(
+                                //         SignupSetEmailOrPhoneAction());
+                                //   },
+                                //   child: SizedBox(
+                                //     width: DeviceInfo(context).width,
+                                //     child: Text(AppLocalizations.of(context)!
+                                //           .common_screen_use_email,
+                                //       textAlign: TextAlign.right,
+                                //       style: const TextStyle(
+                                //         fontStyle: FontStyle.italic,
+                                //         fontSize: 10,
+                                //         color: MyTheme.app_accent_color,
+                                //         decoration: TextDecoration.underline,
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
                                 // password
                                 Const.height18,
 

@@ -24,6 +24,7 @@ ThunkAction<AppState> signupMiddleware(
   passwordConfirmation,
   referral,
   recapthca,
+  phone,
 }) {
   return (Store<AppState> store) async {
     store.dispatch(SignUpAction());
@@ -31,18 +32,18 @@ ThunkAction<AppState> signupMiddleware(
 
     try {
       var data = await AuthRepository().postSignUp(
-        firstName: firstName,
-        lastName: lastName,
-        emailOrPhone: emailOrPhone,
-        emailOrPhoneText: emailOrPhoneText,
-        onBehalf: onBehalf,
-        dateOfBirth: dateOfBirth,
-        password: password,
-        passwordConfirmation: passwordConfirmation,
-        referral: referral,
-        gender: g,
-        recapthca: recapthca,
-      );
+          firstName: firstName,
+          lastName: lastName,
+          emailOrPhone: emailOrPhone,
+          emailOrPhoneText: emailOrPhoneText,
+          onBehalf: onBehalf,
+          dateOfBirth: dateOfBirth,
+          password: password,
+          passwordConfirmation: passwordConfirmation,
+          referral: referral,
+          gender: g,
+          recapthca: recapthca,
+          phone: phone);
       store.dispatch(SignUpAction());
       store.dispatch(SignupReset());
       if (data.result == true) {

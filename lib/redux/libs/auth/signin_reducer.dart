@@ -32,8 +32,8 @@ SignInState? sign_in_reducer(SignInState? state, dynamic action) {
     var emailOrPhone = isOtp
         ? state.isPhone!
             ? state.phoneNumber
-            : state.emailController!.text
-        : state.emailController!.text;
+            : state.emailPhoneController!.text
+        : state.emailPhoneController!.text;
 
     state.passwordErrorText = '';
     state.emailErrorText = '';
@@ -56,10 +56,10 @@ SignInState? sign_in_reducer(SignInState? state, dynamic action) {
 }
 
 bool requiredFieldVerification(SignInState state) {
-  if (state!.emailController!.text.isEmpty) {
-    state.emailErrorText = "Please enter email address";
+  if (state.emailPhoneController!.text.isEmpty) {
+    state.emailErrorText = "Please enter email address or phone number";
     return false;
-  } else if (!RegExp(r'\S+@\S+\.\S+').hasMatch(state.emailController!.text)) {
+  } else if (!isValidEmail(state.emailPhoneController!.text) && !isValidPhone(state.emailPhoneController!.text)) {
     state.emailErrorText = "Please enter a valid email address";
     return false;
   } else if (state.passwordController!.text.isEmpty) {
@@ -73,9 +73,26 @@ bool requiredFieldVerification(SignInState state) {
   return true;
 }
 
+bool isValidEmail(String email) {
+  String emailPattern =
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
+  RegExp regex = RegExp(emailPattern);
+  return regex.hasMatch(email);
+}
+
+
+bool isValidPhone(String phone) {
+  String phonePattern = r'^\d{10}$';
+  RegExp regex = RegExp(phonePattern);
+  return regex.hasMatch(phone);
+}
+
 class IsPhoneOrEmailChangeAction {}
 
-class LoginRequest {}
+class LoginRequest {
+  bool isEmail = true;
+  LoginRequest({required this.isEmail});
+}
 
 class ClearAction {}
 
