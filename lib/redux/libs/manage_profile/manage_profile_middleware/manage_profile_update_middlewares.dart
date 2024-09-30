@@ -33,6 +33,10 @@ ThunkAction<AppState> basicInfoUpdateMiddleware(
     dynamic onbehalf,
     dynamic m_status,
     dynamic noofChild,
+      dynamic nationality,
+      dynamic typeOfVisa,
+      dynamic childrenLivingWith,
+      dynamic childrenLivingWithMe,
     dynamic photo}) {
   return (Store<AppState> store) async {
     store.dispatch(SaveChanges.basicInfo);
@@ -47,6 +51,10 @@ ThunkAction<AppState> basicInfoUpdateMiddleware(
       m_status: m_status,
       noofChild: noofChild,
       photo: photo,
+      childrenLivingWith: childrenLivingWith,
+      childrenLivingWithMe: childrenLivingWithMe,
+      nationality: nationality,
+      typeOfVisa: typeOfVisa
     );
     // print(response.toJson());
 

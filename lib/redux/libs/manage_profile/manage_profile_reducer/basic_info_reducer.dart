@@ -41,6 +41,10 @@ BasicInfoState? basic_info_reducer(BasicInfoState? state, dynamic action) {
           m_status: state.marital_status_value?.id,
           noofChild: state.no_childController!.text,
           photo: state.image,
+          childrenLivingWithMe: state.howManyLivingController!.text,
+          childrenLivingWith: state.childrenLivingWith.name,
+          typeOfVisa: state.type_of_visa_value?.value,
+          nationality: state.nationality.name
         ),
       );
     }

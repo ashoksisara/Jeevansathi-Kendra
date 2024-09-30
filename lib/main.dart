@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
         navigatorKey: OneContext().navigator.key,
         theme: ThemeData(scaffoldBackgroundColor: Colors.white),
         debugShowCheckedModeBanner: false,
-        title: 'Localizations Sample App',
+        title: 'Jeevansathi Kendra',
         localizationsDelegates: const [
           AppLocalizations.delegate, // Add this line
           GlobalMaterialLocalizations.delegate,

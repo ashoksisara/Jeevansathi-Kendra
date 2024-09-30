@@ -53,3 +53,7 @@ enum UpdateInfo {
   physicalAttr,
   attitudeBehaviour,
 }
+
+enum ChildrenLivingWith { Me, Not }
+
+enum Nationality { Indian, NRI }

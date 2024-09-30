@@ -1,8 +1,8 @@
 var this_year = DateTime.now().year.toString();
 
 class AppConfig {
-  static String copyright_text = "@ ActiveItZone " + this_year;
-  static String app_name = "ACTIVE MATRIMONIAL";
+  static String copyright_text = "@JEEVANSATHIKENDRA " + this_year;
+  static String app_name = "JEEVANSATHI KENDRA";
 
   // enter string purchase_code here
   static String purshase_code = 'xxxxx';

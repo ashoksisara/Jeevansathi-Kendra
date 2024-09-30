@@ -5,7 +5,6 @@
 import 'dart:convert';
 
 import 'package:active_matrimonial_flutter_app/models_response/common_models/member_data.dart';
-import 'package:active_matrimonial_flutter_app/models_response/gallery_picture_view_request_get_response.dart';
 
 HomeResponse homeResponseFromJson(String str) =>
     HomeResponse.fromJson(json.decode(str));
@@ -22,7 +21,6 @@ class HomeResponse {
   bool? result;
 
   factory HomeResponse.fromJson(Map<String, dynamic> json) {
-    ca();
     // json["data"].removeWhere((element) {
     //   return element == null;
     // });

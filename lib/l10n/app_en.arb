@@ -22,6 +22,7 @@
   "common_report_member": "Report Member",
   "common_shortlist": "Shortlist",
   "common_shortlisted": "Shortlisted",
+  "children_living_with": "Children living with",
   "public_profile": "Matched ",
   "home_screen_full_profile": "Full Profile",
   "view_more": "View more",
@@ -402,7 +403,11 @@
   "something_went_wrong": "Something went wrong!",
   "info": "Info!",
   "contact_us": "Contact us",
-  "a": "",
-  "a": "",
-  "a": ""
+  "me": "Me",
+  "not": "Not",
+  "how_many_living_with_me": "How many living with me",
+  "nationality": "Nationality",
+  "indian": "Indian",
+  "nri": "NRI",
+  "type_of_visa": "Type of Visa"
 }

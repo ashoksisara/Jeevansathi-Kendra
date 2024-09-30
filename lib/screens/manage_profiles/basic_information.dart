@@ -24,6 +24,10 @@ class BasicInformation extends StatefulWidget {
 }
 
 class _BasicInformationState extends State<BasicInformation> {
+
+  bool isUnmarried = false;
+  bool isWithMe = false;
+
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AppState>(
@@ -254,6 +258,85 @@ class _BasicInformationState extends State<BasicInformation> {
             ),
           ),
           Const.height20,
+          //#################################Nationality###################################
+          GroupItemWithChild(
+            title: AppLocalizations.of(context)!.nationality,
+            child: Row(
+              children: [
+                Radio(
+                  value: Nationality.Indian,
+                  groupValue: state.manageProfileCombineState!.basicInfoState!.nationality,
+                  onChanged: (value) {
+                    setState(() {
+                      state.manageProfileCombineState!.basicInfoState!.nationality = value!;
+                    });
+                  },
+                ),
+                Text(AppLocalizations.of(context)!.indian),
+                Const.width5,
+                Radio(
+                  value: Nationality.NRI,
+                  groupValue: state.manageProfileCombineState!.basicInfoState!.nationality,
+                  onChanged: (value) {
+                    setState(() {
+                      state.manageProfileCombineState!.basicInfoState!.nationality = value!;
+                    });
+                  },
+                ),
+                Text(AppLocalizations.of(context)!.nri)
+              ],
+            ),
+          ),
+
+          //################################Type of visa####################################
+          if(state.manageProfileCombineState!.basicInfoState!.nationality.name == 'NRI')
+            Const.height20,
+          if(state.manageProfileCombineState!.basicInfoState!.nationality.name == 'NRI')
+          GroupItemWithChild(
+            title: AppLocalizations.of(context)!
+                .type_of_visa,
+            child: Container(
+              height: 50,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: MyTheme.solitude),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: DropdownButtonFormField<dynamic>(
+                isExpanded: true,
+                iconSize: 0.0,
+                decoration: InputDecoration(
+                  hintText: "Select one",
+                  isDense: true,
+                  hintStyle: Styles.regular_gull_grey_12,
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                  ),
+                  suffixIcon: Icon(
+                    Icons.keyboard_arrow_down,
+                    color: MyTheme.gull_grey,
+                  ),
+                ),
+                value: state.manageProfileCombineState!.basicInfoState!
+                    .type_of_visa_value,
+                items: state.manageProfileCombineState!
+                    .profiledropdownResponseData!.data!.visaList!
+                    .map<DropdownMenuItem>((e) {
+                  return DropdownMenuItem(
+                    value: e,
+                    child: Text(
+                      e.value,
+                      style: Styles.regular_arsenic_14,
+                    ),
+                  );
+                }).toList(),
+                onChanged: (dynamic newValue) {
+                  state.manageProfileCombineState!.basicInfoState!
+                      .type_of_visa_value = newValue;
+                },
+              ),
+            ),
+          ),
+          Const.height20,
           //################################marital status####################################
 
           GroupItemWithChild(
@@ -296,19 +379,81 @@ class _BasicInformationState extends State<BasicInformation> {
                 onChanged: (dynamic newValue) {
                   state.manageProfileCombineState!.basicInfoState!
                       .marital_status_value = newValue;
+                  isUnmarried = state.manageProfileCombineState!.basicInfoState!
+                      .marital_status_value?.name == 'Unmarried';
+                  setState(() {});
                 },
               ),
             ),
           ),
-          Const.height20,
-          //#################################no of children###################################
 
+          //#################################no of children###################################
+          if (!isUnmarried)
+            Const.height20,
+          if (!isUnmarried)
+            BasicFormWidget(
+              text:
+                  AppLocalizations.of(context)!.manage_profile_number_of_child,
+              style: Styles.bold_arsenic_12,
+              controller: state.manageProfileCombineState!.basicInfoState!
+                  .no_childController,
+              keyboard_type: TextInputType.number,
+              hint: "No of children",
+              validator: (val) {
+                if (val == null || val.isEmpty) {
+                  return "Required field";
+                }
+                if (!isNumber(val)) {
+                  return "Must be a number";
+                }
+                return null;
+              },
+            ),
+          //#################################children living with me###################################
+          if (!isUnmarried)
+            Const.height20,
+          if (!isUnmarried)
+          GroupItemWithChild(
+            title: AppLocalizations.of(context)!.children_living_with,
+            child: Row(
+              children: [
+                Radio(
+                  value: ChildrenLivingWith.Me,
+                  groupValue: state.manageProfileCombineState!.basicInfoState!.childrenLivingWith,
+                  onChanged: (value) {
+                    setState(() {
+                      state.manageProfileCombineState!.basicInfoState!.childrenLivingWith = value!;
+                    });
+                  },
+                ),
+                Text(AppLocalizations.of(context)!.me),
+                Const.width5,
+                Radio(
+                  value: ChildrenLivingWith.Not,
+                  groupValue: state.manageProfileCombineState!.basicInfoState!.childrenLivingWith,
+                  onChanged: (value) {
+                    setState(() {
+                      state.manageProfileCombineState!.basicInfoState!.childrenLivingWith = value!;
+                    });
+                  },
+                ),
+                Text(AppLocalizations.of(context)!.not)
+              ],
+            ),
+          ),
+
+          //#################################How many living with me###################################
+          if (!isUnmarried && (state.manageProfileCombineState!.basicInfoState!.childrenLivingWith == ChildrenLivingWith.Me))
+            Const.height20,
+          if (!isUnmarried && (state.manageProfileCombineState!.basicInfoState!.childrenLivingWith == ChildrenLivingWith.Me))
           BasicFormWidget(
-            text: AppLocalizations.of(context)!.manage_profile_number_of_child,
+            text:
+            AppLocalizations.of(context)!.how_many_living_with_me,
             style: Styles.bold_arsenic_12,
-            controller: state
-                .manageProfileCombineState!.basicInfoState!.no_childController,
+            controller: state.manageProfileCombineState!.basicInfoState!
+                .howManyLivingController,
             hint: "No of children",
+            keyboard_type: TextInputType.number,
             validator: (val) {
               if (val == null || val.isEmpty) {
                 return "Required field";
@@ -319,6 +464,7 @@ class _BasicInformationState extends State<BasicInformation> {
               return null;
             },
           ),
+
           Const.height20,
           //################################photo####################################
 

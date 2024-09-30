@@ -51,6 +51,10 @@ class ManageProfileRepository {
     dynamic m_status,
     required dynamic noofChild,
     dynamic photo,
+    dynamic nationality,
+    dynamic typeOfVisa,
+    dynamic childrenLivingWith,
+    dynamic childrenLivingWithMe,
   }) async {
     var baseUrl = "${AppConfig.BASE_URL}/member/basic-info/update";
     var accessToken = prefs.getString(Const.accessToken);
@@ -66,7 +70,15 @@ class ManageProfileRepository {
     if (onbehalf != null) request.fields["on_behalf"] = "$onbehalf";
     if (m_status != null)
       request.fields["marital_status"] = m_status.toString();
+    if(noofChild != null)
     request.fields["children"] = noofChild;
+    request.fields["nationality"] = nationality;
+    if(typeOfVisa != null)
+    request.fields["type_of_visa"] = typeOfVisa;
+    if(childrenLivingWith != null)
+    request.fields["children_living_with"] = childrenLivingWith;
+    if(childrenLivingWithMe != null)
+    request.fields["children_living_with_me"] = childrenLivingWithMe;
 
     // print(photo?.path != null);
 

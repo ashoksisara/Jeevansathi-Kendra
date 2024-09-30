@@ -5,6 +5,8 @@ import 'package:active_matrimonial_flutter_app/models_response/manage_profile/ge
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../enums/enums.dart';
+
 class BasicInfoState {
   BasicInfoData? basicInfo;
   TextEditingController? f_nameController = TextEditingController();
@@ -12,6 +14,9 @@ class BasicInfoState {
   TextEditingController? no_childController = TextEditingController();
 
   TextEditingController? phoneController = TextEditingController();
+  TextEditingController? howManyLivingController = TextEditingController();
+  ChildrenLivingWith childrenLivingWith = ChildrenLivingWith.Me;
+  Nationality nationality = Nationality.Indian;
 
   final _formKey = GlobalKey<FormState>();
   get formKey => _formKey;
@@ -26,6 +31,7 @@ class BasicInfoState {
   bool? isloading;
   DDown? marital_status_value;
   DDown? on_behalves_value;
+  dynamic type_of_visa_value;
   String? gendervalue = "Male";
 
   DateTime date;
