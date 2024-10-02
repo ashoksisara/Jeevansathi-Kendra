@@ -21,7 +21,7 @@ class AstronomicInformation extends StatefulWidget {
 class _AstronomicInformationState extends State<AstronomicInformation> {
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController _sunController = TextEditingController(
+  final TextEditingController _sunController = TextEditingController(
       text: store.state.manageProfileCombineState!.astronomicState!
                   .astronomicGetResponse!.result ==
               false
@@ -29,7 +29,7 @@ class _AstronomicInformationState extends State<AstronomicInformation> {
           : store.state.manageProfileCombineState!.astronomicState!
                   .astronomicGetResponse?.data?.sunSign ??
               "");
-  TextEditingController _moonController = TextEditingController(
+  final TextEditingController _moonController = TextEditingController(
       text: store.state.manageProfileCombineState!.astronomicState!
                   .astronomicGetResponse!.result ==
               false
@@ -38,7 +38,7 @@ class _AstronomicInformationState extends State<AstronomicInformation> {
                   .astronomicGetResponse?.data?.moonSign ??
               "");
 
-  TextEditingController _timeController = TextEditingController(
+  final TextEditingController _timeController = TextEditingController(
       text: store.state.manageProfileCombineState!.astronomicState!
                   .astronomicGetResponse!.result ==
               false
@@ -47,7 +47,7 @@ class _AstronomicInformationState extends State<AstronomicInformation> {
                   .astronomicGetResponse?.data?.timeOfBirth ??
               "");
 
-  TextEditingController _cityofBirthController = TextEditingController(
+  final TextEditingController _cityofBirthController = TextEditingController(
       text: store.state.manageProfileCombineState!.astronomicState!
                   .astronomicGetResponse!.result ==
               false
@@ -249,6 +249,16 @@ class _AstronomicInformationState extends State<AstronomicInformation> {
               return "Max10 characters";
             }
             return null;
+          },
+          onTap: () async {
+            TimeOfDay? time = await showTimePicker(
+              context: context,
+              initialTime: TimeOfDay.now(),
+            );
+            if (time == null) return;
+            if (mounted) {
+              _timeController.text = time.format(context);
+            }
           },
           decoration:
               InputStyle.inputDecoration_text_field(hint: "Time Of Birth"),

@@ -24,7 +24,7 @@ class PP_AstronomicInfo extends StatelessWidget {
                     data:
                         "${state
                             .publicProfileState!.astrologies.sunSign ?? ''}"),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 buildRow(
@@ -34,7 +34,7 @@ class PP_AstronomicInfo extends StatelessWidget {
                     data:
                         "${state
                             .publicProfileState!.astrologies.moonSign ?? ''}"),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 buildRow(
@@ -44,7 +44,7 @@ class PP_AstronomicInfo extends StatelessWidget {
                     data:
                         "${state
                             .publicProfileState!.astrologies.timeOfBirth ?? ''}"),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 buildRow(
