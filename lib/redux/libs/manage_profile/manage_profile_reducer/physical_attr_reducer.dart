@@ -34,7 +34,7 @@ PhysicalAttrState? physical_attr_reducer(
           body_type: state.bodyTypeController!.text,
           body_art: state.bodyArtController!.text,
           disability: state.disability.name,
-          blood_group: state.bloodGroup.value,
+          blood_group: state.bloodGroup,
           disabilityDetails: state.disability == Disability.Yes ? state.disabilityController!.text : null
         ),
       );
@@ -55,7 +55,7 @@ setPhysicalAttr(PhysicalAttrState? state) {
   state.bodyTypeController!.text = state.physicalAttrData!.bodyType!.toString();
   state.bodyArtController!.text = state.physicalAttrData!.bodyArt!.toString();
   state.disabilityController!.text =
-      state.physicalAttrData!.disabilityDetails!.toString();
+      state.physicalAttrData!.disabilityDetails ?? '';
   state.bloodGroup = state.physicalAttrData!.bloodGroup!.toString();
   state.disability = state.physicalAttrData!.disability == "No" ? Disability.No : Disability.Yes;
 }

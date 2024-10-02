@@ -234,12 +234,12 @@ class _PhysicalAtrributesState extends State<PhysicalAtrributes> {
                 .manageProfileCombineState!
                 .physicalAttrState!.bloodGroup,
             items: state.manageProfileCombineState!
-                .profiledropdownResponseData!.data!.bloodGroupList!
+                .profiledropdownResponseData!.data!.bloodGroupList!.map((e) => e.value).toList()
                 .map<DropdownMenuItem<dynamic>>((e) {
               return DropdownMenuItem<dynamic>(
                 value: e,
                 child: Text(
-                  e.value,
+                  e,
                   style: Styles.regular_arsenic_14,
                 ),
               );
