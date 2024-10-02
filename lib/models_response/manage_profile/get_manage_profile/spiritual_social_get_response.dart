@@ -38,6 +38,7 @@ class Data {
     this.religionId,
     this.casteId,
     this.subCasteId,
+    this.subCaste,
     this.ethnicity,
     this.personalValue,
     this.familyValueId,
@@ -47,6 +48,7 @@ class Data {
   String? religionId;
   String? casteId;
   String? subCasteId;
+  String? subCaste;
   dynamic ethnicity;
   dynamic personalValue;
   String? familyValueId;
@@ -56,6 +58,7 @@ class Data {
         religionId: json["religion_id"] == null ? null : json["religion_id"],
         casteId: json["caste_id"] == null ? null : json["caste_id"],
         subCasteId: json["sub_caste_id"] == null ? null : json["sub_caste_id"],
+    subCaste: json["sub_caste"] == null ? null : json["sub_caste"],
         ethnicity: json["ethnicity"],
         personalValue: json["personal_value"],
         familyValueId:
@@ -68,6 +71,7 @@ class Data {
         "caste_id": casteId == null ? null : casteId,
         "sub_caste_id": subCasteId == null ? null : subCasteId,
         "ethnicity": ethnicity,
+        "sub_caste": subCaste,
         "personal_value": personalValue,
         "family_value_id": familyValueId == null ? null : familyValueId,
         "community_value": communityValue,

@@ -12,6 +12,7 @@ class SpiritualSocialState {
   final SubcasteResponse? subcasteResponse;
   TextEditingController ethnicityController = TextEditingController(text: "");
   TextEditingController personalController = TextEditingController(text: '');
+  TextEditingController subCasteController = TextEditingController(text: '');
 
   TextEditingController communityController = TextEditingController(text: '');
 

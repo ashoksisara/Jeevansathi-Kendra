@@ -127,6 +127,12 @@ class CommonWidget {
           color: MyTheme.gull_grey,
         ),
       ),
+      validator: (value) {
+        if (value == null || value.id == null) {
+          return "Field required";
+        }
+        return null;
+      },
       items: list.map<DropdownMenuItem<DDown>>((e) {
         return DropdownMenuItem<DDown>(
           value: e,

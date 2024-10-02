@@ -923,7 +923,7 @@ class ManageProfileRepository {
     var postBody = jsonEncode({
       "member_religion_id": religion,
       "member_caste_id": caste,
-      "member_sub_caste_id": sub_caste,
+      "member_sub_caste": sub_caste,
       "ethnicity": ethnicity,
       "personal_value": personal_value,
       "family_value_id": family_value,

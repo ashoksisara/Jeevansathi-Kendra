@@ -1,3 +1,4 @@
+import 'package:active_matrimonial_flutter_app/components/basic_form_widget.dart';
 import 'package:active_matrimonial_flutter_app/components/common_app_bar_manageprofile.dart';
 import 'package:active_matrimonial_flutter_app/components/common_input.dart';
 import 'package:active_matrimonial_flutter_app/components/common_widget.dart';
@@ -42,6 +43,15 @@ class _SpiritualSocialState extends State<SpiritualSocial> {
                   ?.spiritualSocialGetResponse
                   ?.data
                   ?.ethnicity ??
+              "";
+          store.state.manageProfileCombineState?.spiritualSocialState
+              ?.subCasteController.text = store
+              .state
+              .manageProfileCombineState
+              ?.spiritualSocialState
+              ?.spiritualSocialGetResponse
+              ?.data
+              ?.subCaste ??
               "";
           store.state.manageProfileCombineState!.spiritualSocialState!
               .personalController.text = store
@@ -116,78 +126,75 @@ class _SpiritualSocialState extends State<SpiritualSocial> {
   }
 
   Widget build_body(BuildContext context, AppState state) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          build_title(context, state),
-          build_religion(context, state),
-          build_caste(context, state),
-          build_sub_caste(context, state),
-          build_ethnicity(context, state),
-          build_personal_value(context, state),
-          build_family_value(context, state),
-          build_community_value(context, state),
-          InkWell(
-            onTap: () {
-              FocusManager.instance.primaryFocus?.unfocus();
-              if (!_formKey.currentState!.validate()) {
-                // store.dispatch(ShowMessageAction(msg: "Form's not validated!"));
-              } else {
-                store.dispatch(spiritualSocialUpdateMiddleware(
-                    religion: state.manageProfileCombineState!
-                            .spiritualSocialState!.religion_val?.id ??
-                        0,
-                    caste: state.manageProfileCombineState!
-                            .spiritualSocialState!.caste_val?.id ??
-                        0,
-                    sub_caste: state.manageProfileCombineState!
-                            .spiritualSocialState!.sub_caste_val?.id ??
-                        0,
-                    ethnicity: state.manageProfileCombineState!
-                        .spiritualSocialState!.ethnicityController.text,
-                    personal_value: state.manageProfileCombineState!
-                        .spiritualSocialState!.personalController.text,
-                    family_value: state.manageProfileCombineState!
-                        .spiritualSocialState!.family_val?.id,
-                    community_value: state.manageProfileCombineState!
-                        .spiritualSocialState!.communityController.text));
-              }
-            },
-            child: Container(
-              height: 45,
-              width: DeviceInfo(context).width,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment(0.8, 1),
-                  colors: [
-                    MyTheme.gradient_color_1,
-                    MyTheme.gradient_color_2,
-                  ],
-                ),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(6.0),
-                ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        build_title(context, state),
+        build_religion(context, state),
+        build_caste(context, state),
+        build_sub_caste(context, state),
+        build_ethnicity(context, state),
+        build_personal_value(context, state),
+        build_family_value(context, state),
+        build_community_value(context, state),
+        InkWell(
+          onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
+            if (!_formKey.currentState!.validate()) {
+              // store.dispatch(ShowMessageAction(msg: "Form's not validated!"));
+            } else {
+              store.dispatch(spiritualSocialUpdateMiddleware(
+                  religion: state.manageProfileCombineState!
+                          .spiritualSocialState!.religion_val?.id ??
+                      0,
+                  caste: state.manageProfileCombineState!
+                          .spiritualSocialState!.caste_val?.id ??
+                      0,
+                  sub_caste: state.manageProfileCombineState!
+                      .spiritualSocialState!.subCasteController.text,
+                  ethnicity: state.manageProfileCombineState!
+                      .spiritualSocialState!.ethnicityController.text,
+                  personal_value: state.manageProfileCombineState!
+                      .spiritualSocialState!.personalController.text,
+                  family_value: state.manageProfileCombineState!
+                      .spiritualSocialState!.family_val?.id,
+                  community_value: state.manageProfileCombineState!
+                      .spiritualSocialState!.communityController.text));
+            }
+          },
+          child: Container(
+            height: 45,
+            width: DeviceInfo(context).width,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: const Alignment(0.8, 1),
+                colors: [
+                  MyTheme.gradient_color_1,
+                  MyTheme.gradient_color_2,
+                ],
               ),
-              child: Center(
-                child: state.manageProfileCombineState!.spiritualSocialState!
-                            .spSaveChanges ==
-                        false
-                    ? Text(
-                        AppLocalizations.of(context)!.save_change_btn_text,
-                        style: Styles.bold_white_14,
-                      )
-                    : Center(
-                        child: CircularProgressIndicator(
-                          color: MyTheme.storm_grey,
-                        ),
-                      ),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(6.0),
               ),
             ),
+            child: Center(
+              child: state.manageProfileCombineState!.spiritualSocialState!
+                          .spSaveChanges ==
+                      false
+                  ? Text(
+                      AppLocalizations.of(context)!.save_change_btn_text,
+                      style: Styles.bold_white_14,
+                    )
+                  : Center(
+                      child: CircularProgressIndicator(
+                        color: MyTheme.storm_grey,
+                      ),
+                    ),
+            ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -206,7 +213,7 @@ class _SpiritualSocialState extends State<SpiritualSocial> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8), color: MyTheme.solitude),
           height: 50,
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: CommonWidget().buildCommonDropDown(
             state.manageProfileCombineState!.profiledropdownResponseData!.data!
                 .religionList!,
@@ -249,12 +256,18 @@ class _SpiritualSocialState extends State<SpiritualSocial> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8), color: MyTheme.solitude),
           height: 50,
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: DropdownButtonFormField<DDown>(
             isExpanded: true,
             iconSize: 0.0,
             value: state
                 .manageProfileCombineState!.spiritualSocialState!.caste_val,
+            validator: (value) {
+              if (value == null || value.id == null) {
+                return "Caste required";
+              }
+              return null;
+            },
             decoration: InputDecoration(
               hintText: "Select One",
               isDense: true,
@@ -302,53 +315,15 @@ class _SpiritualSocialState extends State<SpiritualSocial> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // gender and date of birth
-        Text(
-          AppLocalizations.of(context)!.manage_profile_sub_caste,
-          style: Styles.bold_arsenic_12,
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8), color: MyTheme.solitude),
-          height: 50,
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: DropdownButtonFormField<DDown>(
-            isExpanded: true,
-            iconSize: 0.0,
-            value: state
-                .manageProfileCombineState!.spiritualSocialState!.sub_caste_val,
-            decoration: InputDecoration(
-              hintText: "Select One",
-              isDense: true,
-              hintStyle: Styles.regular_gull_grey_12,
-              border: const OutlineInputBorder(
-                borderSide: BorderSide.none,
-              ),
-              suffixIcon: Icon(
-                Icons.keyboard_arrow_down,
-                color: MyTheme.gull_grey,
-              ),
-              // helperText: 'Helper text',
-            ),
-            items: state.manageProfileCombineState!.spiritualSocialState!
-                .subcasteResponse!.data!
-                .map<DropdownMenuItem<DDown>>((e) {
-              return DropdownMenuItem<DDown>(
-                value: e,
-                child: Text(
-                  e.name!,
-                  style: Styles.regular_gull_grey_12
-                      .copyWith(color: MyTheme.black),
-                ),
-              );
-            }).toList(),
-            onChanged: (dynamic newValue) {
-              store.dispatch(AddSubCasteValueAction(value: newValue));
-            },
-          ),
+        BasicFormWidget(
+          text: AppLocalizations.of(context)!.manage_profile_sub_caste,
+          hint: 'Sub caste',
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Sub caste required";
+            }
+          },
+          controller: state.manageProfileCombineState!.spiritualSocialState!.subCasteController,
         ),
         const SizedBox(
           height: 20,
@@ -420,7 +395,7 @@ class _SpiritualSocialState extends State<SpiritualSocial> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8), color: MyTheme.solitude),
           height: 50,
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: DropdownButtonFormField<DDown>(
             isExpanded: true,
             iconSize: 0.0,
