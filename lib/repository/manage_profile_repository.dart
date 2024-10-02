@@ -329,6 +329,10 @@ class ManageProfileRepository {
       {dynamic designation,
       dynamic company,
       dynamic start,
+        dynamic occupation,
+        dynamic type,
+        dynamic businessType,
+        dynamic monthlyIncome,
       dynamic end}) async {
     var baseUrl = "${AppConfig.BASE_URL}/member/career";
     var accessToken = prefs.getString(Const.accessToken);
@@ -337,7 +341,11 @@ class ManageProfileRepository {
       "designation": designation,
       "company": company,
       "start": start,
-      "end": end
+      "end": end,
+      "occupation": occupation,
+      "job_type": type,
+      "business_type": businessType,
+      "monthly_income": monthlyIncome
     });
 
     var response = await http.post(Uri.parse(baseUrl),
@@ -357,6 +365,10 @@ class ManageProfileRepository {
       dynamic company,
       dynamic start,
       dynamic end,
+        dynamic occupation,
+        dynamic type,
+        dynamic monthlyIncome,
+        dynamic businessType,
       dynamic id}) async {
     var baseUrl = "${AppConfig.BASE_URL}/member/career/$id";
     var accessToken = prefs.getString(Const.accessToken);
@@ -366,6 +378,10 @@ class ManageProfileRepository {
       "company": company,
       "start": start,
       "end": end,
+      "occupation": occupation,
+      "job_type": type,
+      "business_type": businessType,
+      "monthly_income": monthlyIncome
     });
 
     var response = await http.put(Uri.parse(baseUrl),

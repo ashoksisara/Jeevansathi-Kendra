@@ -409,5 +409,13 @@
   "nationality": "Nationality",
   "indian": "Indian",
   "nri": "NRI",
-  "type_of_visa": "Type of Visa"
+  "type_of_visa": "Type of Visa",
+  "occupation": "Occupation",
+  "type": "Type",
+  "monthly_income": "Monthly Income",
+  "business_type": "Business Type",
+  "job": "Job",
+  "business": "Business",
+  "private": "Private",
+  "partnership": "Partnership"
 }

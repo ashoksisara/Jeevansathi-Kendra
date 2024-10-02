@@ -11,16 +11,15 @@ class BasicFormWidget extends StatelessWidget {
   final validator;
   final style;
 
-  BasicFormWidget(
-      {Key? key,
-      this.text,
-      this.hint,
-      this.controller,
-      this.min_line,
-      this.max_line,
-      this.keyboard_type,
-      this.validator,
-      this.style})
+  BasicFormWidget({Key? key,
+    this.text,
+    this.hint,
+    this.controller,
+    this.min_line,
+    this.max_line,
+    this.keyboard_type,
+    this.validator,
+    this.style})
       : super(key: key);
 
   @override
@@ -31,9 +30,9 @@ class BasicFormWidget extends StatelessWidget {
       children: [
         text != null
             ? Text(
-                text,
-                style: style,
-              )
+          text,
+          style: style,
+        )
             : const SizedBox(),
         const SizedBox(
           height: 5,
@@ -70,45 +69,51 @@ class EducationViewModel {
   final validator;
   final style;
 
-  EducationViewModel(
-      {this.degree_hint,
-      this.id,
-      this.present,
-      this.institute_hint,
-      this.start_hint,
-      this.end_hint,
-      this.degree_controller,
-      this.institute_controller,
-      this.start_controller,
-      this.end_controller,
-      this.min_line,
-      this.max_line,
-      this.keyboard_type,
-      this.validator,
-      this.style});
+  EducationViewModel({this.degree_hint,
+    this.id,
+    this.present,
+    this.institute_hint,
+    this.start_hint,
+    this.end_hint,
+    this.degree_controller,
+    this.institute_controller,
+    this.start_controller,
+    this.end_controller,
+    this.min_line,
+    this.max_line,
+    this.keyboard_type,
+    this.validator,
+    this.style});
 }
 
 class CareerViewModel {
+  final occupation;
+  dynamic type;
+  dynamic income;
   final designation_text;
   final company_text;
   final start;
   final id;
   final present;
   final end;
+  final occupation_controller;
   final designation_controller;
   final company_controller;
   final start_controller;
   final end_controller;
 
-  CareerViewModel(
-      {this.designation_text,
-      this.id,
-      this.present,
-      this.company_text,
-      this.start,
-      this.end,
-      this.designation_controller,
-      this.company_controller,
-      this.start_controller,
-      this.end_controller});
+  CareerViewModel({this.designation_text,
+    this.id,
+    this.occupation,
+    this.type,
+    this.income,
+    this.present,
+    this.company_text,
+    this.start,
+    this.end,
+    this.designation_controller,
+    this.occupation_controller,
+    this.company_controller,
+    this.start_controller,
+    this.end_controller});
 }

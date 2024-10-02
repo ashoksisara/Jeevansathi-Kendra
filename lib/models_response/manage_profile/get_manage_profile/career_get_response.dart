@@ -36,14 +36,17 @@ class CareerGetResponse {
 }
 
 class Data {
-  Data({
-    this.id,
-    this.designation,
-    this.company,
-    this.start,
-    this.end,
-    this.present,
-  });
+  Data(
+      {this.id,
+      this.designation,
+      this.company,
+      this.start,
+      this.end,
+      this.present,
+      this.occupation,
+      this.businessType,
+      this.monthlyIncome,
+      this.jobType});
 
   int? id;
   String? designation;
@@ -51,15 +54,22 @@ class Data {
   int? start;
   dynamic end;
   dynamic present;
+  dynamic occupation;
+  dynamic jobType;
+  dynamic businessType;
+  dynamic monthlyIncome;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        id: json["id"],
-        designation: json["designation"],
-        company: json["company"],
-        start: json["start"],
-        end: json["end"],
-        present: json["present"],
-      );
+      id: json["id"],
+      designation: json["designation"],
+      company: json["company"],
+      start: json["start"],
+      end: json["end"],
+      present: json["present"],
+      occupation: json["occupation"],
+      businessType: json["business_type"],
+      monthlyIncome: json["monthly_income"],
+      jobType: json["job_type"]);
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -68,6 +78,10 @@ class Data {
         "start": start,
         "end": end,
         "present": present,
+        "occupation" :occupation,
+        "business_type" : businessType,
+        "monthly_income" : monthlyIncome,
+        "job_type" : jobType
       };
 
   Data.initialState()

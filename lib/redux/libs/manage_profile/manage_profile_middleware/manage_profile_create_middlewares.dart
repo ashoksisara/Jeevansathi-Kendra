@@ -31,7 +31,14 @@ ThunkAction<AppState> education_create_middleware(
 }
 
 ThunkAction<AppState> careerCreateMiddleware(
-    {dynamic designation, dynamic company, dynamic start, dynamic end}) {
+    {dynamic designation,
+    dynamic company,
+    dynamic start,
+    dynamic end,
+    dynamic occupation,
+    dynamic type,
+    dynamic monthlyIncome,
+    dynamic businessType}) {
   return (Store<AppState> store) async {
     store.dispatch(CareerLoader.save_changes);
 
@@ -41,6 +48,10 @@ ThunkAction<AppState> careerCreateMiddleware(
         company: company,
         start: start,
         end: end,
+        monthlyIncome: monthlyIncome,
+        businessType: businessType,
+        occupation: occupation,
+        type: type,
       );
 
       store.dispatch(ShowMessageAction(

@@ -57,3 +57,7 @@ enum UpdateInfo {
 enum ChildrenLivingWith { Me, Not }
 
 enum Nationality { Indian, NRI }
+
+enum BusinessType { Private, Partnership }
+
+enum Occupation { Job, Business }

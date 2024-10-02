@@ -264,6 +264,10 @@ ThunkAction<AppState> careerUpdateMiddleware(
     dynamic company,
     dynamic start,
     dynamic end,
+      dynamic occupation,
+      dynamic type,
+      dynamic monthlyIncome,
+      dynamic businessType,
     dynamic id}) {
   return (Store<AppState> store) async {
     store.dispatch(CareerLoader.update_change);
@@ -274,6 +278,10 @@ ThunkAction<AppState> careerUpdateMiddleware(
           company: company,
           start: start,
           end: end,
+          businessType: businessType,
+          monthlyIncome: monthlyIncome,
+          occupation: occupation,
+          type: type,
           id: id);
 
       store.dispatch(ShowMessageAction(

@@ -142,7 +142,7 @@ class _MyProfileState extends State<MyProfile> {
                   ? const Introduction()
                   : null,
               icon: 'assets/icon/icon_left_qoute.png',
-              pp: PP_Information(),
+              pp: const PP_Information(),
               percentage: PercentageCalculator(
                       data: store.state.manageProfileCombineState!
                           .introductionState!.introData)
@@ -150,9 +150,9 @@ class _MyProfileState extends State<MyProfile> {
           .getWidget(context),
       MyProfileListData(
               title: "Basic Information",
-              link: BasicInformation(),
+              link: const BasicInformation(),
               icon: 'assets/icon/icon_basicInfo.png',
-              pp: PP_BasicInformation(),
+              pp: const PP_BasicInformation(),
               percentage: PercentageCalculator(
                       data: store.state.manageProfileCombineState!
                           .basicInfoState!.basicInfo)
@@ -160,10 +160,10 @@ class _MyProfileState extends State<MyProfile> {
           .getWidget(context),
       if (settingIsActive("member_present_address_section", "on"))
         MyProfileListData(
-                title: "Present Address",
-                link: PresentAddress(),
+                title: "Complete Address",
+                link: const PresentAddress(),
                 icon: 'assets/icon/icon_presentAddress.png',
-                pp: PP_PresentAddress(),
+                pp: const PP_PresentAddress(),
                 percentage: PercentageCalculator(
                         data: store.state.manageProfileCombineState!
                             .presentAddressState!.presentAddressData)
@@ -171,7 +171,7 @@ class _MyProfileState extends State<MyProfile> {
             .getWidget(context),
       MyProfileListData(
               title: "Change Your Email",
-              link: ContactDetails(),
+              link: const ContactDetails(),
               icon: 'assets/icon/icon_contactDetails.png',
               pp: PP_UserContactDetails(
                   userid: store.state.authState!.userData!.id!),
@@ -183,9 +183,9 @@ class _MyProfileState extends State<MyProfile> {
       if (settingIsActive("member_education_section", "on"))
         MyProfileListData(
                 title: "Education Details",
-                link: EducationInfo(),
+                link: const EducationInfo(),
                 icon: 'assets/icon/icon_educationCareer.png',
-                pp: PP_EducationInfo(),
+                pp: const PP_EducationInfo(),
                 percentage: PercentageCalculator(
                         data: store.state.manageProfileCombineState!
                             .educationState!.educationGetResponse)
@@ -194,9 +194,9 @@ class _MyProfileState extends State<MyProfile> {
       if (settingIsActive("member_career_section", "on"))
         MyProfileListData(
                 title: "Career Details",
-                link: CareerInfo(),
+                link: const CareerInfo(),
                 icon: 'assets/icon/icon_educationCareer.png',
-                pp: PP_CareerInfo(),
+                pp: const PP_CareerInfo(),
                 percentage: PercentageCalculator(
                         data: store.state.manageProfileCombineState!
                             .careerState!.careerGetResponse)
@@ -205,9 +205,9 @@ class _MyProfileState extends State<MyProfile> {
       if (settingIsActive("member_physical_attributes_section", "on"))
         MyProfileListData(
                 title: "Physical Attributes",
-                link: PhysicalAtrributes(),
+                link: const PhysicalAtrributes(),
                 icon: 'assets/icon/icon_physicalAttri.png',
-                pp: PP_PhysicalAttributes(),
+                pp: const PP_PhysicalAttributes(),
                 percentage: PercentageCalculator(
                         data: store.state.manageProfileCombineState!
                             .physicalAttrState!.physicalAttrData)
@@ -216,9 +216,9 @@ class _MyProfileState extends State<MyProfile> {
       if (settingIsActive("member_language_section", "on"))
         MyProfileListData(
                 title: "Language",
-                link: Language(),
+                link: const Language(),
                 icon: 'assets/icon/icon_language.png',
-                pp: PP_Language(),
+                pp: const PP_Language(),
                 percentage: PercentageCalculator(
                         data: store.state.manageProfileCombineState!
                             .languageState!.languageGetResponse)
@@ -227,9 +227,9 @@ class _MyProfileState extends State<MyProfile> {
       if (settingIsActive("member_hobbies_and_interests_section", "on"))
         MyProfileListData(
                 title: "Hobbies & Interest",
-                link: HobbiesInterest(),
+                link: const HobbiesInterest(),
                 icon: 'assets/icon/icon_hobbiesInterest.png',
-                pp: PP_HobbiesInterest(),
+                pp: const PP_HobbiesInterest(),
                 percentage: PercentageCalculator(
                         data: store.state.manageProfileCombineState!
                             .hobbiesInterestState!.hobbiesInterestData)
@@ -239,9 +239,9 @@ class _MyProfileState extends State<MyProfile> {
           "member_personal_attitude_and_behavior_section", "on"))
         MyProfileListData(
                 title: "Personal Attitude & Behavior",
-                link: PersonalAttitude(),
+                link: const PersonalAttitude(),
                 icon: 'assets/icon/icon_personalAttitude.png',
-                pp: PP_PersonalAttitude(),
+                pp: const PP_PersonalAttitude(),
                 percentage: PercentageCalculator(
                         data: store.state.manageProfileCombineState!
                             .attributeBehaviorState!.attitudeBehaviorData)
@@ -250,9 +250,9 @@ class _MyProfileState extends State<MyProfile> {
       if (settingIsActive("member_residency_information_section", "on"))
         MyProfileListData(
                 title: "Residency Information",
-                link: ResidencyInformation(),
+                link: const ResidencyInformation(),
                 icon: 'assets/icon/icon_residency.png',
-                pp: PP_ResidencyInfo(),
+                pp: const PP_ResidencyInfo(),
                 percentage: PercentageCalculator(
                         data: store.state.manageProfileCombineState!
                             .residencyState!.residencyGetResponse)
@@ -262,9 +262,9 @@ class _MyProfileState extends State<MyProfile> {
           "member_spiritual_and_social_background_section", "on"))
         MyProfileListData(
                 title: "Spiritual & Social Background",
-                link: SpiritualSocial(),
+                link: const SpiritualSocial(),
                 icon: 'assets/icon/icon_spiritualSocial.png',
-                pp: PP_SpiritualSocial(),
+                pp: const PP_SpiritualSocial(),
                 percentage: PercentageCalculator(
                         data: store.state.manageProfileCombineState!
                             .spiritualSocialState!.spiritualSocialGetResponse)
@@ -273,9 +273,9 @@ class _MyProfileState extends State<MyProfile> {
       if (settingIsActive("member_life_style_section", "on"))
         MyProfileListData(
                 title: "Life Style",
-                link: LifeStyle(),
+                link: const LifeStyle(),
                 icon: 'assets/icon/icon_lifeStyle.png',
-                pp: PP_LifeStyle(),
+                pp: const PP_LifeStyle(),
                 percentage: PercentageCalculator(
                         data: store.state.manageProfileCombineState!
                             .lifeStyleState!.lifeStyleGetResponse)
@@ -284,9 +284,9 @@ class _MyProfileState extends State<MyProfile> {
       if (settingIsActive("member_astronomic_information_section", "on"))
         MyProfileListData(
                 title: "Astronomic Information",
-                link: AstronomicInformation(),
+                link: const AstronomicInformation(),
                 icon: 'assets/icon/icon_astronomy.png',
-                pp: PP_AstronomicInfo(),
+                pp: const PP_AstronomicInfo(),
                 percentage: PercentageCalculator(
                         data: store.state.manageProfileCombineState!
                             .astronomicState!.astronomicGetResponse)
@@ -295,9 +295,9 @@ class _MyProfileState extends State<MyProfile> {
       if (settingIsActive("member_permanent_address_section", "on"))
         MyProfileListData(
                 title: "Permanent Address",
-                link: PermanentAddress(),
+                link: const PermanentAddress(),
                 icon: 'assets/icon/icon_permanentAddress.png',
-                pp: PP_PermanentAddress(),
+                pp: const PP_PermanentAddress(),
                 percentage: PercentageCalculator(
                         data: store.state.manageProfileCombineState!
                             .permanentAddressState!.permanentGetResponse)
@@ -306,9 +306,9 @@ class _MyProfileState extends State<MyProfile> {
       if (settingIsActive("member_family_information_section", "on"))
         MyProfileListData(
                 title: "Family Information",
-                link: FamilyInformation(),
+                link: const FamilyInformation(),
                 icon: 'assets/icon/icon_family.png',
-                pp: PP_FamilyInfo(),
+                pp: const PP_FamilyInfo(),
                 percentage: PercentageCalculator(
                         data: store.state.manageProfileCombineState!
                             .familyState!.familyData)
@@ -334,35 +334,35 @@ class _MyProfileState extends State<MyProfile> {
               build_min_height(context, state),
               build_max_weight(context, state),
               build_residence_marital_row(context, state),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               build_children_religion_row(context, state),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               build_caste_subcaste_row(context, state),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               build_language_smoking_Row(context, state),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               build_education(context, state),
               build_profession(context, state),
               build_drinking_acceptable(context, state),
               build_diet_body_Row(context, state),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               build_personal_value(context, state),
               build_manglik_counry_Row(context, state),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               build_state_family_value_Row(context, state),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               build_complexion(context, state),
@@ -423,13 +423,13 @@ class _MyProfileState extends State<MyProfile> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
-                      end: Alignment(0.8, 1),
+                      end: const Alignment(0.8, 1),
                       colors: [
                         MyTheme.gradient_color_1,
                         MyTheme.gradient_color_2,
                       ],
                     ),
-                    borderRadius: BorderRadius.all(
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(6.0),
                     ),
                   ),
@@ -463,7 +463,7 @@ class _MyProfileState extends State<MyProfile> {
           // linear gradient
           gradient: LinearGradient(
             begin: Alignment.topLeft,
-            end: Alignment(0.8, 1),
+            end: const Alignment(0.8, 1),
             colors: [
               MyTheme.gradient_color_1,
               MyTheme.gradient_color_2,
@@ -479,7 +479,7 @@ class _MyProfileState extends State<MyProfile> {
           child: Container(
             height: 220,
             child: Padding(
-              padding: EdgeInsets.only(right: 20.0, left: 20.0, top: 10),
+              padding: const EdgeInsets.only(right: 20.0, left: 20.0, top: 10),
               child: Column(
                 children: [
                   /// image name email and other more vertz field
@@ -611,10 +611,10 @@ class _MyProfileState extends State<MyProfile> {
         padding: EdgeInsets.only(
             right: Const.kPaddingHorizontal, left: Const.kPaddingHorizontal),
         child: ListView.separated(
-          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+          padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
           shrinkWrap: true,
           itemCount: profileSections().length,
-          separatorBuilder: (context, index) => SizedBox(
+          separatorBuilder: (context, index) => const SizedBox(
             height: 20,
           ),
           physics: const NeverScrollableScrollPhysics(),
@@ -733,7 +733,7 @@ class _MyProfileState extends State<MyProfile> {
                     borderRadius: BorderRadius.circular(8),
                     color: MyTheme.solitude),
                 height: 50,
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: CommonWidget().buildDropdownButtonFormField(
                     store
                         .state
@@ -770,7 +770,7 @@ class _MyProfileState extends State<MyProfile> {
                   borderRadius: BorderRadius.circular(8),
                   color: MyTheme.solitude),
               height: 50,
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: CommonWidget().buildDropdownButtonFormField(
                   store
                       .state
@@ -813,7 +813,7 @@ class _MyProfileState extends State<MyProfile> {
                 child: DropdownButtonFormField(
                     iconSize: 0.0,
                     decoration: InputStyle.inputDecoration_text_field(
-                        suffixIcon: Icon(Icons.keyboard_arrow_down)),
+                        suffixIcon: const Icon(Icons.keyboard_arrow_down)),
                     value: state.manageProfileCombineState!
                         .partnerExpectationState!.children_value,
                     items: state.manageProfileCombineState!
@@ -855,7 +855,7 @@ class _MyProfileState extends State<MyProfile> {
                   borderRadius: BorderRadius.circular(8),
                   color: MyTheme.solitude),
               height: 50,
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: CommonWidget().buildDropdownButtonFormField(
                 store.state.manageProfileCombineState!
                     .profiledropdownResponseData!.data!.religionList!,
@@ -1001,7 +1001,7 @@ class _MyProfileState extends State<MyProfile> {
                     borderRadius: BorderRadius.circular(8),
                     color: MyTheme.solitude),
                 height: 50,
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: CommonWidget().buildDropdownButtonFormField(
                     state
                         .manageProfileCombineState!
@@ -1036,7 +1036,7 @@ class _MyProfileState extends State<MyProfile> {
               child: DropdownButtonFormField(
                   iconSize: 0.0,
                   decoration: InputStyle.inputDecoration_text_field(
-                      suffixIcon: Icon(Icons.keyboard_arrow_down)),
+                      suffixIcon: const Icon(Icons.keyboard_arrow_down)),
                   value: state.manageProfileCombineState!
                       .partnerExpectationState!.smoking_value,
                   items: state.manageProfileCombineState!
@@ -1130,7 +1130,7 @@ class _MyProfileState extends State<MyProfile> {
           child: DropdownButtonFormField(
               iconSize: 0.0,
               decoration: InputStyle.inputDecoration_text_field(
-                  suffixIcon: Icon(Icons.keyboard_arrow_down)),
+                  suffixIcon: const Icon(Icons.keyboard_arrow_down)),
               value: state.manageProfileCombineState!.partnerExpectationState!
                   .drinking_value,
               items: state.manageProfileCombineState!.partnerExpectationState!
@@ -1178,7 +1178,7 @@ class _MyProfileState extends State<MyProfile> {
                 child: DropdownButtonFormField(
                     iconSize: 0.0,
                     decoration: InputStyle.inputDecoration_text_field(
-                        suffixIcon: Icon(Icons.keyboard_arrow_down)),
+                        suffixIcon: const Icon(Icons.keyboard_arrow_down)),
                     value: state.manageProfileCombineState!
                         .partnerExpectationState!.diet_value,
                     items: state.manageProfileCombineState!
@@ -1319,7 +1319,7 @@ class _MyProfileState extends State<MyProfile> {
                   borderRadius: BorderRadius.circular(8),
                   color: MyTheme.solitude),
               height: 50,
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: CommonWidget().buildDropdownButtonFormField(
                   store
                       .state
@@ -1365,7 +1365,7 @@ class _MyProfileState extends State<MyProfile> {
                     borderRadius: BorderRadius.circular(8),
                     color: MyTheme.solitude),
                 height: 50,
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: DropdownButtonFormField<DDown>(
                   isExpanded: true,
                   iconSize: 0.0,
@@ -1414,7 +1414,7 @@ class _MyProfileState extends State<MyProfile> {
                   borderRadius: BorderRadius.circular(8),
                   color: MyTheme.solitude),
               height: 50,
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: CommonWidget().buildDropdownButtonFormField(
                   store
                       .state

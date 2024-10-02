@@ -24,7 +24,9 @@ class ProfiledropdownResponse {
   factory ProfiledropdownResponse.fromJson(Map<String, dynamic> json) =>
       ProfiledropdownResponse(
         result: json["result"] == null ? null : json["result"],
-        data: json["data"] == null ? null : ProfiledropdownResponseData.fromJson(json["data"]),
+        data: json["data"] == null
+            ? null
+            : ProfiledropdownResponseData.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -38,35 +40,40 @@ class ProfiledropdownResponse {
 }
 
 class ProfiledropdownResponseData {
+  ProfiledropdownResponseData.init()
+      : this.onbehalfList = [],
+        this.maritialStatus = [],
+        this.languageList = [],
+        this.religionList = [],
+        this.familyValueList = [],
+        this.countryList = [],
+        this.visaList = [],
+        this.jobTypeList = [],
+        this.incomeList = [];
 
-  ProfiledropdownResponseData.init():
+  ProfiledropdownResponseData(
+      {this.onbehalfList,
+      this.maritialStatus,
+      this.languageList,
+      this.religionList,
+      this.familyValueList,
+      this.countryList,
+      this.visaList,
+      this.jobTypeList,
+      this.incomeList});
 
-  this.onbehalfList=[],
-  this.maritialStatus=[],
-  this.languageList=[],
-  this.religionList=[],
-  this.familyValueList=[],
-  this.countryList=[];
+  List<DDown>? onbehalfList = [];
+  List<DDown>? maritialStatus = [];
+  List<DDown>? languageList = [];
+  List<DDown>? religionList = [];
+  List<DDown>? familyValueList = [];
+  List<DDown>? countryList = <DDown>[];
+  List<dynamic>? visaList = <dynamic>[];
+  List<dynamic>? jobTypeList = <dynamic>[];
+  List<dynamic>? incomeList = <dynamic>[];
 
-  ProfiledropdownResponseData({
-    this.onbehalfList,
-    this.maritialStatus,
-    this.languageList,
-    this.religionList,
-    this.familyValueList,
-    this.countryList,
-    this.visaList
-  });
-
-  List<DDown>? onbehalfList=[];
-  List<DDown>? maritialStatus=[];
-  List<DDown>? languageList=[];
-  List<DDown>? religionList=[];
-  List<DDown>? familyValueList=[];
-  List<DDown>? countryList=<DDown>[];
-  List<dynamic>? visaList=<DDown>[];
-
-  factory ProfiledropdownResponseData.fromJson(Map<String, dynamic> json) => ProfiledropdownResponseData(
+  factory ProfiledropdownResponseData.fromJson(Map<String, dynamic> json) =>
+      ProfiledropdownResponseData(
         onbehalfList: json["onbehalf_list"] == null
             ? null
             : List<DDown>.from(
@@ -93,9 +100,16 @@ class ProfiledropdownResponseData {
                 json["country_list"].map((x) => DDown.fromJson(x))),
         visaList: json["visa"] == null
             ? null
+            : List<dynamic>.from(json["visa"].entries.map((x) => x).toList()),
+        jobTypeList: json["job_type"] == null
+            ? null
             : List<dynamic>.from(
-            json["visa"].entries.map((x) => x).toList()),
-          );
+                json["job_type"].entries.map((x) => x).toList()),
+        incomeList: json["income_list"] == null
+            ? null
+            : List<dynamic>.from(
+                json["income_list"].entries.map((x) => x).toList()),
+      );
 
   Map<String, dynamic> toJson() => {
         "onbehalf_list": onbehalfList == null
@@ -116,10 +130,11 @@ class ProfiledropdownResponseData {
         "country_list": countryList == null
             ? null
             : List<dynamic>.from(countryList!.map((x) => x.toJson())),
-    "visa": visaList == null
-        ? null
-        : List<dynamic>.from(visaList!.map((x) => x)),
+        "job_type": jobTypeList == null
+            ? null
+            : List<dynamic>.from(jobTypeList!.map((x) => x)),
+        "income_list": incomeList == null
+            ? null
+            : List<dynamic>.from(incomeList!.map((x) => x)),
       };
 }
-
-
