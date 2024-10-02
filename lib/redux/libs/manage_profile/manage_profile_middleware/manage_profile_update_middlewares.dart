@@ -524,6 +524,7 @@ ThunkAction<AppState> physicalAttrMiddleware(
     dynamic body_type,
     dynamic body_art,
     dynamic blood_group,
+    dynamic disabilityDetails,
     dynamic disability}) {
   return (Store<AppState> store) async {
     store.dispatch(PhysicalAttrLoader());
@@ -538,6 +539,7 @@ ThunkAction<AppState> physicalAttrMiddleware(
           body_type: body_type,
           body_art: body_art,
           blood_group: blood_group,
+          disabilityDetails: disabilityDetails,
           disability: disability);
       store.dispatch(physicalAttributesGetMiddleware());
 

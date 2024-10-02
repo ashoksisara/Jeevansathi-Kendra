@@ -14,7 +14,7 @@ class PP_CareerInfo extends StatelessWidget {
       converter: (store) => store.state,
       builder: (_, state) => state.publicProfileState!.career.isNotEmpty
           ? ListView.separated(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         padding: EdgeInsets.zero,
               shrinkWrap: true,
               reverse: true,
@@ -32,7 +32,7 @@ class PP_CareerInfo extends StatelessWidget {
                             AppLocalizations.of(context)!.public_profile_designation,
                         data: state.publicProfileState!.career[index].designation ??
                             ''),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     buildRow(
@@ -41,7 +41,7 @@ class PP_CareerInfo extends StatelessWidget {
                             .public_profile_company,
                         data: state.publicProfileState!.career[index].company ??
                             ''),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     buildRow(
@@ -50,7 +50,7 @@ class PP_CareerInfo extends StatelessWidget {
                             AppLocalizations.of(context)!.public_profile_start,
                         data:
                             "${state.publicProfileState!.career[index].start ?? ''}"),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     buildRow(
@@ -60,7 +60,7 @@ class PP_CareerInfo extends StatelessWidget {
                         data:
                             "${state.publicProfileState!.career[index].end ?? ''}"),
 
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     buildRow(
@@ -68,7 +68,7 @@ class PP_CareerInfo extends StatelessWidget {
                         localization_text:
                         "Status",
                         data:
-                        "${state.publicProfileState!.career[index].present? "Active": "Deactive"}"),
+                        state.publicProfileState!.career[index].present? "Active": "Deactive"),
                   ],
                 );
               },

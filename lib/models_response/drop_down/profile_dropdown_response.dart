@@ -60,6 +60,7 @@ class ProfiledropdownResponseData {
       this.countryList,
       this.visaList,
       this.jobTypeList,
+      this.bloodGroupList,
       this.incomeList});
 
   List<DDown>? onbehalfList = [];
@@ -71,6 +72,7 @@ class ProfiledropdownResponseData {
   List<dynamic>? visaList = <dynamic>[];
   List<dynamic>? jobTypeList = <dynamic>[];
   List<dynamic>? incomeList = <dynamic>[];
+  List<dynamic>? bloodGroupList = <dynamic>[];
 
   factory ProfiledropdownResponseData.fromJson(Map<String, dynamic> json) =>
       ProfiledropdownResponseData(
@@ -109,6 +111,10 @@ class ProfiledropdownResponseData {
             ? null
             : List<dynamic>.from(
                 json["income_list"].entries.map((x) => x).toList()),
+        bloodGroupList: json["blood_group"] == null
+            ? null
+            : List<dynamic>.from(
+                json["blood_group"].entries.map((x) => x).toList()),
       );
 
   Map<String, dynamic> toJson() => {

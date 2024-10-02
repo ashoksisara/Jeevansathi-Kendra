@@ -1,3 +1,4 @@
+import 'package:active_matrimonial_flutter_app/enums/enums.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../models_response/manage_profile/get_manage_profile/physical_attributes_get_response.dart';
@@ -14,8 +15,9 @@ class PhysicalAttrState {
   TextEditingController? bodyTypeController = TextEditingController();
   TextEditingController? bodyArtController = TextEditingController();
   TextEditingController? disabilityController = TextEditingController();
-  TextEditingController? bloodController = TextEditingController();
-
+  // TextEditingController? bloodController = TextEditingController();
+  dynamic bloodGroup;
+  Disability disability = Disability.No;
   PhysicalAttrData? physicalAttrData;
 
   PhysicalAttrState({
@@ -28,7 +30,6 @@ class PhysicalAttrState {
     this.bodyArtController,
     this.bodyTypeController,
     this.disabilityController,
-    this.bloodController,
   });
 
   PhysicalAttrState.initialState()
@@ -40,7 +41,6 @@ class PhysicalAttrState {
         bodyArtController = TextEditingController(text: ''),
         bodyTypeController = TextEditingController(text: ''),
         disabilityController = TextEditingController(text: ''),
-        bloodController = TextEditingController(text: ''),
         physicalAttrData = null,
         isLoading = false;
 }

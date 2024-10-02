@@ -23,12 +23,12 @@ class PhysicalAttributesGetResponse {
         data: json["data"] == null
             ? null
             : PhysicalAttrData.fromJson(json["data"]),
-        result: json["result"] == null ? null : json["result"],
+        result: json["result"],
       );
 
   Map<String, dynamic> toJson() => {
         "data": data == null ? null : data!.toJson(),
-        "result": result == null ? null : result,
+        "result": result,
       };
 }
 
@@ -43,6 +43,7 @@ class PhysicalAttrData {
     this.bodyType,
     this.bodyArt,
     this.disability,
+    this.disabilityDetails,
   });
 
   double? height;
@@ -54,29 +55,32 @@ class PhysicalAttrData {
   String? bodyType;
   String? bodyArt;
   String? disability;
+  String? disabilityDetails;
 
   factory PhysicalAttrData.fromJson(Map<String, dynamic> json) =>
       PhysicalAttrData(
         height: json["height"] == null ? null : json["height"].toDouble(),
-        weight: json["weight"] == null ? null : json["weight"],
-        eyeColor: json["eye_color"] == null ? null : json["eye_color"],
-        hairColor: json["hair_color"] == null ? null : json["hair_color"],
-        complexion: json["complexion"] == null ? null : json["complexion"],
-        bloodGroup: json["blood_group"] == null ? null : json["blood_group"],
-        bodyType: json["body_type"] == null ? null : json["body_type"],
-        bodyArt: json["body_art"] == null ? null : json["body_art"],
-        disability: json["disability"] == null ? null : json["disability"],
+        weight: json["weight"],
+        eyeColor: json["eye_color"],
+        hairColor: json["hair_color"],
+        complexion: json["complexion"],
+        bloodGroup: json["blood_group"],
+        bodyType: json["body_type"],
+        bodyArt: json["body_art"],
+        disability: json["disability"],
+        disabilityDetails: json["disability_detail"],
       );
 
   Map<String, dynamic> toJson() => {
-        "height": height == null ? null : height,
-        "weight": weight == null ? null : weight,
-        "eye_color": eyeColor == null ? null : eyeColor,
-        "hair_color": hairColor == null ? null : hairColor,
-        "complexion": complexion == null ? null : complexion,
-        "blood_group": bloodGroup == null ? null : bloodGroup,
-        "body_type": bodyType == null ? null : bodyType,
-        "body_art": bodyArt == null ? null : bodyArt,
-        "disability": disability == null ? null : disability,
+        "height": height,
+        "weight": weight,
+        "eye_color": eyeColor,
+        "hair_color": hairColor,
+        "complexion": complexion,
+        "blood_group": bloodGroup,
+        "body_type": bodyType,
+        "body_art": bodyArt,
+        "disability": disability,
+        "disability_detail": disabilityDetails,
       };
 }

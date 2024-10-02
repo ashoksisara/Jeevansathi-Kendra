@@ -61,3 +61,5 @@ enum Nationality { Indian, NRI }
 enum BusinessType { Private, Partnership }
 
 enum Occupation { Job, Business }
+
+enum Disability { Yes, No }

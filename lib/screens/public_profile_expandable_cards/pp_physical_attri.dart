@@ -21,7 +21,7 @@ class PP_PhysicalAttributes extends StatelessWidget {
                         AppLocalizations.of(context)!.public_profile_height,
                     data:
                         "${state.publicProfileState!.physical.height ?? ''} ft"),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 buildRow(
@@ -30,7 +30,7 @@ class PP_PhysicalAttributes extends StatelessWidget {
                         AppLocalizations.of(context)!.public_profile_eye_color,
                     data:
                         "${state.publicProfileState!.physical.eyeColor ?? ''}"),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 buildRow(
@@ -39,7 +39,7 @@ class PP_PhysicalAttributes extends StatelessWidget {
                         AppLocalizations.of(context)!.public_profile_complexion,
                     data:
                         "${state.publicProfileState!.physical.complexion ?? ''}"),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 buildRow(
@@ -48,7 +48,7 @@ class PP_PhysicalAttributes extends StatelessWidget {
                         AppLocalizations.of(context)!.public_profile_body_type,
                     data:
                         "${state.publicProfileState!.physical.bodyType ?? ''}"),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 buildRow(
@@ -57,7 +57,7 @@ class PP_PhysicalAttributes extends StatelessWidget {
                         AppLocalizations.of(context)!.public_profile_disability,
                     data:
                         "${state.publicProfileState!.physical.disability ?? ''}"),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 buildRow(
@@ -66,7 +66,7 @@ class PP_PhysicalAttributes extends StatelessWidget {
                         AppLocalizations.of(context)!.public_profile_weight,
                     data:
                         "${state.publicProfileState!.physical.weight ?? ''}"),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 buildRow(
@@ -75,7 +75,7 @@ class PP_PhysicalAttributes extends StatelessWidget {
                         AppLocalizations.of(context)!.public_profile_hair_color,
                     data:
                         "${state.publicProfileState!.physical.hairColor ?? ''}"),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 buildRow(
@@ -84,7 +84,7 @@ class PP_PhysicalAttributes extends StatelessWidget {
                         AppLocalizations.of(context)!.public_profile_blood_group,
                     data:
                         "${state.publicProfileState!.physical.bloodGroup ?? ''}"),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 buildRow(
@@ -93,7 +93,7 @@ class PP_PhysicalAttributes extends StatelessWidget {
                         AppLocalizations.of(context)!.public_profile_body_art,
                     data:
                         "${state.publicProfileState!.physical.bodyArt ?? ''}"),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
               ],

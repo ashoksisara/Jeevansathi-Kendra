@@ -1,6 +1,7 @@
 import 'package:active_matrimonial_flutter_app/components/basic_form_widget.dart';
 import 'package:active_matrimonial_flutter_app/components/common_app_bar_manageprofile.dart';
 import 'package:active_matrimonial_flutter_app/components/common_widget.dart';
+import 'package:active_matrimonial_flutter_app/components/group_item_with_child.dart';
 import 'package:active_matrimonial_flutter_app/const/const.dart';
 import 'package:active_matrimonial_flutter_app/const/my_theme.dart';
 import 'package:active_matrimonial_flutter_app/const/style.dart';
@@ -17,6 +18,9 @@ class PhysicalAtrributes extends StatefulWidget {
 }
 
 class _PhysicalAtrributesState extends State<PhysicalAtrributes> {
+
+  bool isDisable = false;
+
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AppState>(
@@ -160,29 +164,92 @@ class _PhysicalAtrributesState extends State<PhysicalAtrributes> {
           },
         ),
         Const.height20,
-        BasicFormWidget(
-          text: AppLocalizations.of(context)!.manage_profile_disability,
+        GroupItemWithChild(
+          title: AppLocalizations.of(context)!.manage_profile_disability,
           style: Styles.bold_arsenic_12,
-          controller: state.manageProfileCombineState!.physicalAttrState!
-              .disabilityController,
-          hint: "No",
+          child: Row(
+            children: [
+              Radio(
+                value: Disability.No,
+                groupValue: state.manageProfileCombineState!.physicalAttrState!.disability,
+                onChanged: (value) {
+                  setState(() {
+                    isDisable = false;
+                    state.manageProfileCombineState!.physicalAttrState!.disability = value!;
+                  });
+                },
+              ),
+              Text(AppLocalizations.of(context)!.no),
+              Const.width5,
+              Radio(
+                value: Disability.Yes,
+                groupValue: state.manageProfileCombineState!.physicalAttrState!.disability,
+                onChanged: (value) {
+                  setState(() {
+                    isDisable = true;
+                    state.manageProfileCombineState!.physicalAttrState!.disability = value!;
+                  });
+                },
+              ),
+              Text(AppLocalizations.of(context)!.yes)
+            ],
+          ),
         ),
+        if(isDisable)
         Const.height20,
+        if(isDisable)
         BasicFormWidget(
-          text: AppLocalizations.of(context)!.manage_profile_blood_group,
+          text: AppLocalizations.of(context)!.manage_profile_disability_details,
           style: Styles.bold_arsenic_12,
           controller: state
-              .manageProfileCombineState!.physicalAttrState!.bloodController,
-          hint: "A+",
+              .manageProfileCombineState!.physicalAttrState!.disabilityController,
+          hint: "Disability Details",
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "Enter blood group";
-            }
-            if (value.length > 3) {
-              return "Max 3 characters";
+              return "Enter disability details";
             }
             return null;
           },
+        ),
+        Const.height20,
+        GroupItemWithChild(
+          title: AppLocalizations.of(context)!.manage_profile_blood_group,
+          style: Styles.bold_arsenic_12,
+          child:  DropdownButtonFormField<dynamic>(
+            isExpanded: true,
+            iconSize: 0.0,
+            decoration: InputDecoration(
+              hintText: "Select one",
+              isDense: true,
+              hintStyle: Styles.regular_gull_grey_12,
+              border: const OutlineInputBorder(
+                borderSide: BorderSide.none,
+              ),
+              suffixIcon: Icon(
+                Icons.keyboard_arrow_down,
+                color: MyTheme.gull_grey,
+              ),
+            ),
+            value: state
+                .manageProfileCombineState!
+                .physicalAttrState!.bloodGroup,
+            items: state.manageProfileCombineState!
+                .profiledropdownResponseData!.data!.bloodGroupList!
+                .map<DropdownMenuItem<dynamic>>((e) {
+              return DropdownMenuItem<dynamic>(
+                value: e,
+                child: Text(
+                  e.value,
+                  style: Styles.regular_arsenic_14,
+                ),
+              );
+            }).toList(),
+            onChanged: (dynamic newValue) {
+              state
+                  .manageProfileCombineState!
+                  .physicalAttrState!.bloodGroup = newValue;
+            },
+          ),
         ),
         Const.height40,
         InkWell(

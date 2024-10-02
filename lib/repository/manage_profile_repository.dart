@@ -817,6 +817,7 @@ class ManageProfileRepository {
       dynamic body_type,
       dynamic body_art,
       dynamic blood_group,
+      dynamic disabilityDetails,
       dynamic disability}) async {
     var baseUrl = "${AppConfig.BASE_URL}/member/physical-attributes/update";
     var accessToken = prefs.getString(Const.accessToken);
@@ -829,7 +830,8 @@ class ManageProfileRepository {
       "body_type": body_type,
       "body_art": body_art,
       "blood_group": blood_group,
-      "disability": disability
+      "disability": disability,
+      "disability_detail": disabilityDetails
     });
 
     var response = await http.post(Uri.parse(baseUrl),
