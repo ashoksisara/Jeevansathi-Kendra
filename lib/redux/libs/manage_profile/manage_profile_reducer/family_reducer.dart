@@ -32,6 +32,12 @@ FamilyState? family_reducer(FamilyState? state, dynamic action) {
           father: state.fatherController!.text,
           mother: state.motherController!.text,
           sibling: state.siblingController!.text,
+          motherStatus: state.motherStatus.name,
+          motherOccupation: state.motherOccupationController!.text,
+          motherEducation: state.motherEducationController!.text,
+          fatherStatus: state.fatherStatus.name,
+          fatherOccupation: state.fatherOccupationController!.text,
+          fatherEducation: state.fatherEducationController!.text
         ),
       );
     }
@@ -42,7 +48,13 @@ FamilyState? family_reducer(FamilyState? state, dynamic action) {
 
 setFamily(FamilyState? state) {
   state!.fatherController!.text = state.familyData!.father!;
+  state.fatherEducationController!.text = state.familyData!.fatherEducation!;
+  state.fatherOccupationController!.text = state.familyData!.fatherOccupation!;
+  state.fatherStatus = state.familyData!.fatherStatus == "Alive" ? AliveStatus.Alive : AliveStatus.Deceased;
   state.motherController!.text = state.familyData!.mother!;
+  state.motherEducationController!.text = state.familyData!.motherEducation!;
+  state.motherOccupationController!.text = state.familyData!.motherOccupation!;
+  state.motherStatus= state.familyData!.motherStatus == "Alive" ? AliveStatus.Alive : AliveStatus.Deceased;
   state.siblingController!.text = state.familyData!.sibling!;
 }
 

@@ -63,3 +63,5 @@ enum BusinessType { Private, Partnership }
 enum Occupation { Job, Business }
 
 enum Disability { Yes, No }
+
+enum AliveStatus {Alive, Deceased}

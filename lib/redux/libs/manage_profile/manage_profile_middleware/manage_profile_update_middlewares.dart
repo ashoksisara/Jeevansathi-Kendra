@@ -33,29 +33,28 @@ ThunkAction<AppState> basicInfoUpdateMiddleware(
     dynamic onbehalf,
     dynamic m_status,
     dynamic noofChild,
-      dynamic nationality,
-      dynamic typeOfVisa,
-      dynamic childrenLivingWith,
-      dynamic childrenLivingWithMe,
+    dynamic nationality,
+    dynamic typeOfVisa,
+    dynamic childrenLivingWith,
+    dynamic childrenLivingWithMe,
     dynamic photo}) {
   return (Store<AppState> store) async {
     store.dispatch(SaveChanges.basicInfo);
 
     var response = await ManageProfileRepository().basicInfoUpdate(
-      f_name: f_name,
-      l_name: l_name,
-      gender: gender,
-      dob: dob,
-      phone: phone,
-      onbehalf: onbehalf,
-      m_status: m_status,
-      noofChild: noofChild,
-      photo: photo,
-      childrenLivingWith: childrenLivingWith,
-      childrenLivingWithMe: childrenLivingWithMe,
-      nationality: nationality,
-      typeOfVisa: typeOfVisa
-    );
+        f_name: f_name,
+        l_name: l_name,
+        gender: gender,
+        dob: dob,
+        phone: phone,
+        onbehalf: onbehalf,
+        m_status: m_status,
+        noofChild: noofChild,
+        photo: photo,
+        childrenLivingWith: childrenLivingWith,
+        childrenLivingWithMe: childrenLivingWithMe,
+        nationality: nationality,
+        typeOfVisa: typeOfVisa);
     // print(response.toJson());
 
     if (response.result!) {
@@ -264,10 +263,10 @@ ThunkAction<AppState> careerUpdateMiddleware(
     dynamic company,
     dynamic start,
     dynamic end,
-      dynamic occupation,
-      dynamic type,
-      dynamic monthlyIncome,
-      dynamic businessType,
+    dynamic occupation,
+    dynamic type,
+    dynamic monthlyIncome,
+    dynamic businessType,
     dynamic id}) {
   return (Store<AppState> store) async {
     store.dispatch(CareerLoader.update_change);
@@ -325,14 +324,32 @@ ThunkAction<AppState> eudcationUpdateMiddleware(
   };
 }
 
-ThunkAction<AppState> familyUpdateMiddleware(
-    {dynamic father, dynamic mother, dynamic sibling}) {
+ThunkAction<AppState> familyUpdateMiddleware({
+  dynamic father,
+  dynamic mother,
+  dynamic sibling,
+  dynamic fatherEducation,
+  dynamic fatherOccupation,
+  dynamic fatherStatus,
+  dynamic motherEducation,
+  dynamic motherOccupation,
+  dynamic motherStatus,
+}) {
   return (Store<AppState> store) async {
     store.dispatch(SaveChanges.familyInfo);
 
     try {
-      var data = await ManageProfileRepository()
-          .updateFamily(father: father, mother: mother, sibling: sibling);
+      var data = await ManageProfileRepository().updateFamily(
+        father: father,
+        mother: mother,
+        sibling: sibling,
+        fatherEducation: fatherEducation,
+        fatherOccupation: fatherOccupation,
+        fatherStatus: fatherStatus,
+        motherEducation: motherEducation,
+        motherOccupation: motherOccupation,
+        motherStatus: motherStatus
+      );
       store.dispatch(familyGetMiddleware());
 
       store.dispatch(ShowMessageAction(

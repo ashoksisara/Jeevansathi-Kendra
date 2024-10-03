@@ -70,6 +70,67 @@ class _FamilyInformationState extends State<FamilyInformation> {
         ),
         Const.height20,
         GroupItemWithChild(
+          title: AppLocalizations.of(context)!.manage_profile_father_education,
+          child: TextFormField(
+            controller:
+            state.manageProfileCombineState!.familyState!.fatherEducationController!,
+            validator: (val) {
+              if (val == null || val.isEmpty) {
+                return "This field is required";
+              }
+              return null;
+            },
+            decoration: InputStyle.inputDecoration_text_field(hint: "Father education"),
+          ),
+        ),
+        Const.height20,
+        GroupItemWithChild(
+          title: AppLocalizations.of(context)!.manage_profile_father_occupation,
+          child: TextFormField(
+            controller:
+            state.manageProfileCombineState!.familyState!.fatherOccupationController!,
+            validator: (val) {
+              if (val == null || val.isEmpty) {
+                return "This field is required";
+              }
+              return null;
+            },
+            decoration: InputStyle.inputDecoration_text_field(hint: "Father occupation"),
+          ),
+        ),
+        Const.height20,
+        GroupItemWithChild(
+          title: AppLocalizations.of(context)!
+              .manage_profile_father_status,
+          style: Styles.bold_arsenic_12,
+          child: Row(
+            children: [
+              Radio(
+                value: AliveStatus.Alive,
+                groupValue: state.manageProfileCombineState!.familyState!.fatherStatus,
+                onChanged: (value) {
+                  setState(() {
+                    state.manageProfileCombineState!.familyState!.fatherStatus = value!;
+                  });
+                },
+              ),
+              Text(AppLocalizations.of(context)!.alive),
+              Const.width5,
+              Radio(
+                value: AliveStatus.Deceased,
+                groupValue: state.manageProfileCombineState!.familyState!.fatherStatus,
+                onChanged: (value) {
+                  setState(() {
+                    state.manageProfileCombineState!.familyState!.fatherStatus = value!;
+                  });
+                },
+              ),
+              Text(AppLocalizations.of(context)!.deceased)
+            ],
+          ),
+        ),
+        Const.height20,
+        GroupItemWithChild(
           title: AppLocalizations.of(context)!.manage_profile_mother,
           child: TextFormField(
             controller:
@@ -81,6 +142,67 @@ class _FamilyInformationState extends State<FamilyInformation> {
               return null;
             },
             decoration: InputStyle.inputDecoration_text_field(hint: "Mother"),
+          ),
+        ),
+        Const.height20,
+        GroupItemWithChild(
+          title: AppLocalizations.of(context)!.manage_profile_mother_education,
+          child: TextFormField(
+            controller:
+            state.manageProfileCombineState!.familyState!.motherEducationController!,
+            validator: (val) {
+              if (val == null || val.isEmpty) {
+                return "This field is required";
+              }
+              return null;
+            },
+            decoration: InputStyle.inputDecoration_text_field(hint: "Mother education"),
+          ),
+        ),
+        Const.height20,
+        GroupItemWithChild(
+          title: AppLocalizations.of(context)!.manage_profile_mother_occupation,
+          child: TextFormField(
+            controller:
+            state.manageProfileCombineState!.familyState!.motherOccupationController!,
+            validator: (val) {
+              if (val == null || val.isEmpty) {
+                return "This field is required";
+              }
+              return null;
+            },
+            decoration: InputStyle.inputDecoration_text_field(hint: "Mother occupation"),
+          ),
+        ),
+        Const.height20,
+        GroupItemWithChild(
+          title: AppLocalizations.of(context)!
+              .manage_profile_mother_status,
+          style: Styles.bold_arsenic_12,
+          child: Row(
+            children: [
+              Radio(
+                value: AliveStatus.Alive,
+                groupValue: state.manageProfileCombineState!.familyState!.motherStatus,
+                onChanged: (value) {
+                  setState(() {
+                    state.manageProfileCombineState!.familyState!.motherStatus = value!;
+                  });
+                },
+              ),
+              Text(AppLocalizations.of(context)!.alive),
+              Const.width5,
+              Radio(
+                value: AliveStatus.Deceased,
+                groupValue: state.manageProfileCombineState!.familyState!.motherStatus,
+                onChanged: (value) {
+                  setState(() {
+                    state.manageProfileCombineState!.familyState!.motherStatus = value!;
+                  });
+                },
+              ),
+              Text(AppLocalizations.of(context)!.deceased)
+            ],
           ),
         ),
         Const.height20,

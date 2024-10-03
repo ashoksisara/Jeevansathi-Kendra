@@ -187,7 +187,13 @@
   "manage_profile_city": "City",
   "manage_profile_postal_code": "Postal code",
   "manage_profile_father": "Father",
+  "manage_profile_father_education": "Father education",
+  "manage_profile_father_occupation": "Father occupation",
+  "manage_profile_father_status": "Father status",
   "manage_profile_mother": "Mother",
+  "manage_profile_mother_education": "Mother education",
+  "manage_profile_mother_occupation": "Mother occupation",
+  "manage_profile_mother_status": "Mother status",
   "manage_profile_sibling": "Sibling",
   "happy_story": "Happy Stories",
   "happy_stories_posted_by": "Posted By :",
@@ -419,5 +425,8 @@
   "job": "Job",
   "business": "Business",
   "private": "Private",
-  "partnership": "Partnership"
+  "partnership": "Partnership",
+  "alive": "Alive",
+  "deceased": "Deceased"
+
 }

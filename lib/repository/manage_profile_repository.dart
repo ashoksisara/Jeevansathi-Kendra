@@ -70,15 +70,13 @@ class ManageProfileRepository {
     if (onbehalf != null) request.fields["on_behalf"] = "$onbehalf";
     if (m_status != null)
       request.fields["marital_status"] = m_status.toString();
-    if(noofChild != null)
-    request.fields["children"] = noofChild;
+    if (noofChild != null) request.fields["children"] = noofChild;
     request.fields["nationality"] = nationality;
-    if(typeOfVisa != null)
-    request.fields["type_of_visa"] = typeOfVisa;
-    if(childrenLivingWith != null)
-    request.fields["children_living_with"] = childrenLivingWith;
-    if(childrenLivingWithMe != null)
-    request.fields["children_living_with_me"] = childrenLivingWithMe;
+    if (typeOfVisa != null) request.fields["type_of_visa"] = typeOfVisa;
+    if (childrenLivingWith != null)
+      request.fields["children_living_with"] = childrenLivingWith;
+    if (childrenLivingWithMe != null)
+      request.fields["children_living_with_me"] = childrenLivingWithMe;
 
     // print(photo?.path != null);
 
@@ -329,10 +327,10 @@ class ManageProfileRepository {
       {dynamic designation,
       dynamic company,
       dynamic start,
-        dynamic occupation,
-        dynamic type,
-        dynamic businessType,
-        dynamic monthlyIncome,
+      dynamic occupation,
+      dynamic type,
+      dynamic businessType,
+      dynamic monthlyIncome,
       dynamic end}) async {
     var baseUrl = "${AppConfig.BASE_URL}/member/career";
     var accessToken = prefs.getString(Const.accessToken);
@@ -365,10 +363,10 @@ class ManageProfileRepository {
       dynamic company,
       dynamic start,
       dynamic end,
-        dynamic occupation,
-        dynamic type,
-        dynamic monthlyIncome,
-        dynamic businessType,
+      dynamic occupation,
+      dynamic type,
+      dynamic monthlyIncome,
+      dynamic businessType,
       dynamic id}) async {
     var baseUrl = "${AppConfig.BASE_URL}/member/career/$id";
     var accessToken = prefs.getString(Const.accessToken);
@@ -498,12 +496,29 @@ class ManageProfileRepository {
   }
 
   // family update
-  Future<CommonResponse> updateFamily(
-      {dynamic father, dynamic mother, dynamic sibling}) async {
+  Future<CommonResponse> updateFamily({
+    dynamic father,
+    dynamic mother,
+    dynamic sibling,
+    dynamic fatherEducation,
+    dynamic fatherOccupation,
+    dynamic fatherStatus,
+    dynamic motherEducation,
+    dynamic motherOccupation,
+    dynamic motherStatus,
+  }) async {
     var baseUrl = "${AppConfig.BASE_URL}/member/family-info/update";
     var accessToken = prefs.getString(Const.accessToken);
     var postBody =
-        jsonEncode({"father": father, "mother": mother, "sibling": sibling});
+        jsonEncode({"father_name": father,
+          "father_education": fatherEducation,
+          "father_occupation": fatherOccupation,
+          "father_status": fatherStatus,
+          "mother_name": mother,
+          "mother_education": motherEducation,
+          "mother_occupation": motherOccupation,
+          "mother_status": motherStatus,
+          "sibling": sibling});
 
     var response = await http.post(Uri.parse(baseUrl),
         headers: {
