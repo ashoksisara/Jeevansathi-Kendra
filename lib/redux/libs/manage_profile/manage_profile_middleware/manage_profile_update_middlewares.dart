@@ -452,6 +452,7 @@ ThunkAction<AppState> partnerExpectationUpdateMiddleware({
   dynamic pref_state,
   dynamic family_val,
   dynamic complexion,
+  dynamic additionalPreference,
 }) {
   return (Store<AppState> store) async {
     store.dispatch(Pexsave(true));
@@ -479,6 +480,7 @@ ThunkAction<AppState> partnerExpectationUpdateMiddleware({
           pref_country: pref_country,
           pref_state: pref_state,
           family_val: family_val,
+          additionalPreference: additionalPreference,
           complexion: complexion);
       if (data.result) {
         store.dispatch(partnerExpectationGetMiddleware());

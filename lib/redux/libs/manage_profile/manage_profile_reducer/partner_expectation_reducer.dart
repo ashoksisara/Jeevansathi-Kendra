@@ -172,7 +172,7 @@ pex_add_preferred_state(
 
 pex_add_preferred_country(
     PartnerExpectationState state, PexPreferredCountryAddValueAction action) {
-  state.preferred_country = action.value;
+  state.preferred_countries = action.value;
   return state;
 }
 
@@ -224,6 +224,8 @@ pex_partnerexpectation_get_response(
       "${state.partnerExpectationGetResponse!.data!.personalValue ?? ''}";
   state.complexion_controller.text =
       "${state.partnerExpectationGetResponse!.data!.complexion ?? ''}";
+  state.additional_controller.text =
+      "${state.partnerExpectationGetResponse!.data!.additionalPreference ?? ''}";
   state.body_controller.text =
       "${state.partnerExpectationGetResponse!.data!.bodyType ?? ''}";
   pexprofile_drop_down_response(state);
@@ -407,16 +409,7 @@ pexprofile_drop_down_response(PartnerExpectationState state) {
   }
 
   if (state.partnerExpectationGetResponse!.data?.preferredCountryId != null) {
-    store.state.manageProfileCombineState!.profiledropdownResponseData!.data!
-        .countryList!
-        .forEach((element) {
-      if (element.name ==
-          state.partnerExpectationGetResponse!.data!.preferredCountryId) {
-        state.preferred_country = element;
-        store.dispatch(
-            stateMiddleware(element.id, state: AppStates.partnerPreference));
-      }
-    });
+    state.preferred_countries = state.partnerExpectationGetResponse!.data!.preferredCountryId ?? [];
   }
 
   if (state.partnerExpectationGetResponse!.data?.familyValueId != null) {

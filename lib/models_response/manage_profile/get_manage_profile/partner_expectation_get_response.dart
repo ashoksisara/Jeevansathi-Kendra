@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:active_matrimonial_flutter_app/models_response/common_models/ddown.dart';
+
 PartnerExpectationGetResponse partnerExpectationGetResponseFromJson(
         String str) =>
     PartnerExpectationGetResponse.fromJson(json.decode(str));
@@ -55,6 +57,7 @@ class Data {
     this.preferredCountryId,
     this.preferredStateId,
     this.complexion,
+    this.additionalPreference,
   });
 
   String? general;
@@ -76,9 +79,10 @@ class Data {
   dynamic manglik;
   dynamic languageId;
   String? familyValueId;
-  String? preferredCountryId;
+  List<DDown>? preferredCountryId;
   String? preferredStateId;
   dynamic complexion;
+  dynamic additionalPreference;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         general: json["general"] == null ? null : json["general"],
@@ -109,13 +113,18 @@ class Data {
         languageId: json["language"],
         familyValueId:
             json["family_value_id"] == null ? null : json["family_value_id"],
-        preferredCountryId: json["preferred_country_id"] == null
-            ? null
-            : json["preferred_country_id"],
+        // preferredCountryId: json["preferred_country_id"] == null
+        //     ? null
+        //     : json["preferred_country_id"],
+    preferredCountryId: json["preferred_country_id"] == null
+        ? null
+        : List<DDown>.from(
+        json["preferred_country_id"].map((x) => DDown.fromJson(x))),
         preferredStateId: json["preferred_state_id"] == null
             ? null
             : json["preferred_state_id"],
         complexion: json["complexion"],
+        additionalPreference: json["additional_preferences"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -147,6 +156,7 @@ class Data {
         "preferred_state_id":
             preferredStateId == null ? null : preferredStateId,
         "complexion": complexion,
+        "additional_preferences": additionalPreference,
       };
 
   Data.initialState()
@@ -168,7 +178,8 @@ class Data {
         personalValue = '',
         manglik = '',
         languageId = '',
-        preferredCountryId = '',
+        preferredCountryId = [],
         preferredStateId = '',
-        complexion = '';
+        complexion = '',
+        additionalPreference = '';
 }

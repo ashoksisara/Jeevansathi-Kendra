@@ -749,6 +749,7 @@ class ManageProfileRepository {
     dynamic pref_state,
     dynamic family_val,
     dynamic complexion,
+    dynamic additionalPreference,
   }) async {
     var baseUrl = "${AppConfig.BASE_URL}/member/partner-expectation/update";
     var accessToken = prefs.getString(Const.accessToken);
@@ -774,8 +775,9 @@ class ManageProfileRepository {
       "language_id": language,
       "family_value_id": family_val,
       "partner_country_id": pref_country,
-      "partner_state_id": pref_state,
-      "pertner_complexion": complexion,
+      "additional_preferences": additionalPreference,
+      // "partner_state_id": pref_state,
+      // "pertner_complexion": complexion,
     });
 
     var response = await http.post(Uri.parse(baseUrl),

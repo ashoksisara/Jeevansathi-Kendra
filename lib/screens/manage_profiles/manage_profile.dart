@@ -361,11 +361,12 @@ class _MyProfileState extends State<MyProfile> {
               const SizedBox(
                 height: 20,
               ),
-              build_state_family_value_Row(context, state),
-              const SizedBox(
-                height: 20,
-              ),
-              build_complexion(context, state),
+              // build_state_family_value_Row(context, state),
+              // const SizedBox(
+              //   height: 20,
+              // ),
+              // build_complexion(context, state),
+              build_additional_preference(context, state),
               InkWell(
                 onTap: () {
                   FocusManager.instance.primaryFocus?.unfocus();
@@ -411,10 +412,12 @@ class _MyProfileState extends State<MyProfile> {
                         body_type: store.state.manageProfileCombineState!.partnerExpectationState!.body_controller.text,
                         personal_value: store.state.manageProfileCombineState!.partnerExpectationState!.personal_value_controller.text,
                         manglik: state.manageProfileCombineState!.partnerExpectationState!.manglik_val?.key ?? "",
-                        pref_country: state.manageProfileCombineState!.partnerExpectationState!.preferred_country?.id,
+                        pref_country: (state.manageProfileCombineState!.partnerExpectationState!.preferred_countries ?? []).map((e) => e.id).toList(),
                         pref_state: state.manageProfileCombineState!.partnerExpectationState!.preferred_state?.id,
                         family_val: state.manageProfileCombineState!.partnerExpectationState!.family_value?.id,
-                        complexion: store.state.manageProfileCombineState!.partnerExpectationState!.complexion_controller.text));
+                        complexion: store.state.manageProfileCombineState!.partnerExpectationState!.complexion_controller.text,
+                        additionalPreference: store.state.manageProfileCombineState!.partnerExpectationState!.additional_controller.text
+                    ));
                   }
                 },
                 child: Container(
@@ -476,7 +479,7 @@ class _MyProfileState extends State<MyProfile> {
           ),
         ),
         child: SafeArea(
-          child: Container(
+          child: SizedBox(
             height: 220,
             child: Padding(
               padding: const EdgeInsets.only(right: 20.0, left: 20.0, top: 10),
@@ -501,7 +504,7 @@ class _MyProfileState extends State<MyProfile> {
                           ),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(25.0),
-                            child: Container(
+                            child: SizedBox(
                               height: 50,
                               width: 50,
                               child: MyImages.normalImage(state.accountState!
@@ -897,7 +900,7 @@ class _MyProfileState extends State<MyProfile> {
               const SizedBox(
                 height: 5,
               ),
-              Container(
+              SizedBox(
                 height: 50,
                 child: DropdownButtonFormField<DDown>(
                   isExpanded: true,
@@ -949,7 +952,7 @@ class _MyProfileState extends State<MyProfile> {
             const SizedBox(
               height: 5,
             ),
-            Container(
+            SizedBox(
               height: 50,
               child: DropdownButtonFormField<DDown>(
                 isExpanded: true,
@@ -1031,7 +1034,7 @@ class _MyProfileState extends State<MyProfile> {
             const SizedBox(
               height: 5,
             ),
-            Container(
+            SizedBox(
               height: 50,
               child: DropdownButtonFormField(
                   iconSize: 0.0,
@@ -1125,7 +1128,7 @@ class _MyProfileState extends State<MyProfile> {
         const SizedBox(
           height: 5,
         ),
-        Container(
+        SizedBox(
           height: 50,
           child: DropdownButtonFormField(
               iconSize: 0.0,
@@ -1173,7 +1176,7 @@ class _MyProfileState extends State<MyProfile> {
               const SizedBox(
                 height: 5,
               ),
-              Container(
+              SizedBox(
                 height: 50,
                 child: DropdownButtonFormField(
                     iconSize: 0.0,
@@ -1268,7 +1271,7 @@ class _MyProfileState extends State<MyProfile> {
               const SizedBox(
                 height: 5,
               ),
-              Container(
+              SizedBox(
                 height: 50,
                 child: DropdownButtonFormField<dynamic>(
                   isExpanded: true,
@@ -1307,38 +1310,19 @@ class _MyProfileState extends State<MyProfile> {
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              AppLocalizations.of(context)!.manage_profile_preferred_country,
-              style: Styles.bold_arsenic_12,
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: MyTheme.solitude),
-              height: 50,
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: CommonWidget().buildDropdownButtonFormField(
-                  store
-                      .state
-                      .manageProfileCombineState!
-                      .profiledropdownResponseData!
-                      .data!
-                      .countryList!, (value) {
-                // pref_country_value = value.id;
-                store.dispatch(PexPreferredCountryAddValueAction(value: value));
+            MultiSelectDropdown(
+              title: AppLocalizations.of(context)!.manage_profile_preferred_country,
+              items: store.state.manageProfileCombineState!.profiledropdownResponseData!.data!.countryList!,
+              selectedItems: state.manageProfileCombineState!.partnerExpectationState!.preferred_countries ?? [],
+              onSelectionChanged: (selectedItems) {
+                store.dispatch(PexPreferredCountryAddValueAction(value: selectedItems));
 
                 if (state.manageProfileCombineState!.partnerExpectationState!
                     .stateResponse!.data!.isNotEmpty) {
                   store.dispatch(PexEmptyPreferredState());
                 }
-                store.dispatch(stateMiddleware(value.id,
-                    state: AppStates.partnerPreference));
+                  // store.dispatch(stateMiddleware(selectedItem.id, state: AppStates.partnerPreference));
               },
-                  value: state.manageProfileCombineState!
-                      .partnerExpectationState!.preferred_country),
             ),
           ],
         ))
@@ -1450,6 +1434,32 @@ class _MyProfileState extends State<MyProfile> {
           controller: store.state.manageProfileCombineState!
               .partnerExpectationState!.complexion_controller,
           decoration: InputStyle.inputDecoration_text_field(hint: "Complexion"),
+        ),
+
+        const SizedBox(
+          height: 40,
+        ),
+      ],
+    );
+  }
+
+  Widget build_additional_preference(BuildContext context, AppState) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ///complexion
+        Text(
+          AppLocalizations.of(context)!.manage_profile_additional_preference,
+          style: Styles.bold_arsenic_12,
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        TextFormField(
+          controller: store.state.manageProfileCombineState!
+              .partnerExpectationState!.additional_controller,
+          decoration: InputStyle.inputDecoration_text_field(hint: "Addition preference"),
+          maxLines: 3,
         ),
 
         const SizedBox(

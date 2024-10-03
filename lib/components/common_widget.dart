@@ -1,3 +1,5 @@
+import 'package:active_matrimonial_flutter_app/components/basic_form_widget.dart';
+import 'package:active_matrimonial_flutter_app/components/group_item_with_child.dart';
 import 'package:active_matrimonial_flutter_app/const/my_theme.dart';
 import 'package:active_matrimonial_flutter_app/const/style.dart';
 import 'package:active_matrimonial_flutter_app/helpers/device_info.dart';
@@ -5,6 +7,8 @@ import 'package:active_matrimonial_flutter_app/models_response/common_models/ddo
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:one_context/one_context.dart';
+
+import 'common_input.dart';
 
 class CommonWidget {
   static InkWell social_button({
@@ -186,4 +190,129 @@ class CommonWidget {
       width: 16,
     ),
   );
+}
+
+class MultiSelectDropdown extends StatefulWidget {
+  final String title;
+  final List<DDown> items; // List of selectable items
+  final List<DDown> selectedItems; // Selected items
+  final Function(List<DDown>)
+      onSelectionChanged; // Callback when selection changes
+
+  const MultiSelectDropdown({
+    Key? key,
+    required this.items,
+    required this.title,
+    required this.selectedItems,
+    required this.onSelectionChanged,
+  }) : super(key: key);
+
+  @override
+  _MultiSelectDropdownState createState() => _MultiSelectDropdownState();
+}
+
+class _MultiSelectDropdownState extends State<MultiSelectDropdown> {
+  List<DDown> _selectedItems = [];
+  final countryController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedItems = List.from(
+        widget.selectedItems);
+    countryController.text = _selectedItems.map((e) => e.name).join(", ");
+  }
+
+  // This function will be called when the user confirms the selection
+  void _showMultiSelectDialog(BuildContext context) async {
+    final List<DDown> tempSelected = List.from(_selectedItems);
+
+    // Show dialog to select items
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Select Contry"),
+          content: StatefulBuilder(builder: (context, setState) {
+            return SingleChildScrollView(
+              child: ListBody(
+                children: widget.items.map((item) {
+                  return CheckboxListTile(
+                    value: tempSelected.contains(item),
+                    activeColor: MyTheme.app_accent_color,
+                    title: Text(item.name ?? ''),
+                    onChanged: (bool? selected) {
+                      setState(() {
+                        if (selected == true) {
+                          tempSelected.add(item);
+                        } else {
+                          tempSelected.remove(item);
+                        }
+                      });
+                    },
+                  );
+                }).toList(),
+              ),
+            );
+          }),
+          actions: <Widget>[
+            TextButton(
+              child: Container(
+                height: 45,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: const Alignment(0.8, 1),
+                    colors: [
+                      MyTheme.gradient_color_1,
+                      MyTheme.gradient_color_2,
+                    ],
+                  ),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(6.0),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    AppLocalizations.of(context)!.save_change_btn_text,
+                    style: Styles.bold_white_14,
+                  ),
+                ),
+              ),
+              onPressed: () {
+                setState(() {
+                  _selectedItems = tempSelected;
+                  widget.onSelectionChanged(_selectedItems); // Call callback
+                });
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+    countryController.text = _selectedItems.map((e) => e.name).join(", ");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          widget.title,
+          style: Styles.bold_arsenic_12,
+        ),
+        TextFormField(
+          readOnly: true,
+          onTap: () {
+            _showMultiSelectDialog(context);
+          },
+          controller: countryController,
+          decoration: InputStyle.inputDecoration_text_field(
+              suffixIcon: const Icon(Icons.keyboard_arrow_down_outlined)),
+        )
+      ],
+    );
+  }
 }

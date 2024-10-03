@@ -284,6 +284,7 @@
   "manage_profile_preferred_state": "Preferred State",
   "manage_profile_family_value": "Family Value",
   "manage_profile_complexion": "Complexion",
+  "manage_profile_additional_preference": "Additional Preference",
   "public_profile_name": "Name:",
   "public_profile_religion": "Religion:",
   "public_profile_age": "Age:",

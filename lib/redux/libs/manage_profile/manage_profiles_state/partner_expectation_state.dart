@@ -22,7 +22,8 @@ class PartnerExpectationState {
   DDown? religion_val;
   DDown? caste_val;
   DDown? sub_caste_val;
-  DDown? preferred_country;
+  // DDown? preferred_country;
+  List<DDown>? preferred_countries;
   DDown? preferred_state;
   CommonDropDownValue? manglik_val;
   DDown? residency_country_val;
@@ -43,6 +44,7 @@ class PartnerExpectationState {
   TextEditingController body_controller = TextEditingController();
   TextEditingController personal_value_controller = TextEditingController();
   TextEditingController complexion_controller = TextEditingController();
+  TextEditingController additional_controller = TextEditingController();
 
   PartnerExpectationState({
     this.isloading,
