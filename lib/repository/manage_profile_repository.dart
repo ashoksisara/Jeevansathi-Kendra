@@ -518,7 +518,7 @@ class ManageProfileRepository {
           "mother_education": motherEducation,
           "mother_occupation": motherOccupation,
           "mother_status": motherStatus,
-          "sibling": sibling});
+          "siblings": sibling});
 
     var response = await http.post(Uri.parse(baseUrl),
         headers: {

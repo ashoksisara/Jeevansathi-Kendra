@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:active_matrimonial_flutter_app/redux/libs/manage_profile/manage_profiles_state/family_state.dart';
+
 FamilyGetResponse familyGetResponseFromJson(String str) =>
     FamilyGetResponse.fromJson(json.decode(str));
 
@@ -53,7 +55,7 @@ class FamilyData {
   String? motherEducation;
   String? motherOccupation;
   String? motherStatus;
-  String? sibling;
+  List<dynamic>? sibling;
 
   factory FamilyData.fromJson(Map<String, dynamic> json) => FamilyData(
         father: json["father_name"] == null ? null : json["father_name"],
@@ -64,13 +66,13 @@ class FamilyData {
         motherEducation: json["mother_education"] == null ? null : json["mother_education"],
         motherOccupation: json["mother_occupation"] == null ? null : json["mother_occupation"],
         motherStatus: json["mother_status"] == null ? null : json["mother_status"],
-        sibling: json["sibling"] == null ? null : json["sibling"],
+        sibling: json["siblings"] == null ? null : json["siblings"].map((e) => SiblingModel.fromJson(e)).toList(),
       );
 
   Map<String, dynamic> toJson() => {
         "father_name": father == null ? null : father,
         "mother_name": mother == null ? null : mother,
-        "sibling": sibling == null ? null : sibling,
+        "sibling":  sibling,
         "mother_status": motherStatus == null ? null : motherStatus,
         "mother_occupation": motherOccupation == null ? null : motherOccupation,
         "mother_education": motherEducation == null ? null : motherEducation,

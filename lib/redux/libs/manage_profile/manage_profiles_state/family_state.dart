@@ -15,8 +15,11 @@ class FamilyState {
   TextEditingController? motherEducationController = TextEditingController();
   TextEditingController? motherOccupationController = TextEditingController();
   AliveStatus motherStatus = AliveStatus.Alive;
-  TextEditingController? siblingController = TextEditingController();
+
+  List<dynamic> siblingList = [];
+
   final formKey = GlobalKey<FormState>();
+  SiblingType siblingType = SiblingType.Brother;
 
   FamilyData? familyData;
 
@@ -30,7 +33,6 @@ class FamilyState {
     this.motherEducationController,
     this.motherOccupationController,
     this.motherController,
-    this.siblingController,
     this.familyData,
   });
 
@@ -43,6 +45,40 @@ class FamilyState {
         motherEducationController = TextEditingController(text: ''),
         fatherOccupationController = TextEditingController(text: ''),
         fatherEducationController = TextEditingController(text: ''),
-        siblingController = TextEditingController(text: ''),
         pageloader = false;
+}
+
+class SiblingModel {
+  String? name;
+  String? maritalStatus;
+  String? education;
+  dynamic occupation;
+  dynamic type;
+  TextEditingController? nameController;
+  TextEditingController? educationController;
+
+  SiblingModel(
+      {this.name,
+      this.type,
+      this.occupation,
+      this.education,
+      this.educationController,
+      this.nameController,
+      this.maritalStatus});
+
+  factory SiblingModel.fromJson(Map<String, dynamic> json) => SiblingModel(
+    name: json["sibling_name"],
+    maritalStatus: json["sibling_marital_status"],
+    education: json["sibling_education"],
+    occupation: json["sibling_occupation"],
+    type: json["sibling_type"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "sibling_name": name,
+    "sibling_marital_status": maritalStatus,
+    "sibling_education": education,
+    "sibling_occupation": occupation,
+    "sibling_type": type,
+  };
 }

@@ -8,6 +8,8 @@ import '../manage_profile_middleware/manage_profile_update_middlewares.dart';
 
 class Loader {}
 
+class AddSibling {}
+
 FamilyState? family_reducer(FamilyState? state, dynamic action) {
   if (action is Loader) {
     state!.isloading = !state.isloading!;
@@ -31,7 +33,7 @@ FamilyState? family_reducer(FamilyState? state, dynamic action) {
         familyUpdateMiddleware(
           father: state.fatherController!.text,
           mother: state.motherController!.text,
-          sibling: state.siblingController!.text,
+          sibling: state.siblingList.map((e) => e.toJson()).toList(),
           motherStatus: state.motherStatus.name,
           motherOccupation: state.motherOccupationController!.text,
           motherEducation: state.motherEducationController!.text,
@@ -42,6 +44,8 @@ FamilyState? family_reducer(FamilyState? state, dynamic action) {
       );
     }
   }
+
+
 
   return state;
 }
@@ -55,7 +59,7 @@ setFamily(FamilyState? state) {
   state.motherEducationController!.text = state.familyData!.motherEducation!;
   state.motherOccupationController!.text = state.familyData!.motherOccupation!;
   state.motherStatus= state.familyData!.motherStatus == "Alive" ? AliveStatus.Alive : AliveStatus.Deceased;
-  state.siblingController!.text = state.familyData!.sibling!;
+  state.siblingList = state.familyData!.sibling ?? [];
 }
 
 // actions

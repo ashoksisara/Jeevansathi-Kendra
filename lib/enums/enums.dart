@@ -65,3 +65,5 @@ enum Occupation { Job, Business }
 enum Disability { Yes, No }
 
 enum AliveStatus {Alive, Deceased}
+
+enum SiblingType {Brother, Sister}

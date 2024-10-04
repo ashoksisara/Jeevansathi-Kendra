@@ -195,6 +195,7 @@
   "manage_profile_mother_occupation": "Mother occupation",
   "manage_profile_mother_status": "Mother status",
   "manage_profile_sibling": "Sibling",
+  "manage_profile_sibling_type": "Sibling type",
   "happy_story": "Happy Stories",
   "happy_stories_posted_by": "Posted By :",
   "happy_stories_on": "On:",
@@ -427,6 +428,10 @@
   "private": "Private",
   "partnership": "Partnership",
   "alive": "Alive",
-  "deceased": "Deceased"
-
+  "deceased": "Deceased",
+  "brother": "Brother",
+  "sister": "Sister",
+  "relation": "Relation",
+  "married": "Married",
+  "unmarried": "Unmarried"
 }
