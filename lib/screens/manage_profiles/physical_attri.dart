@@ -64,19 +64,48 @@ class _PhysicalAtrributesState extends State<PhysicalAtrributes> {
           style: Styles.bold_app_accent_14,
         ),
         Const.height25,
-        BasicFormWidget(
-          text: AppLocalizations.of(context)!.manage_profile_height,
-          style: Styles.bold_arsenic_12,
-          controller: state
-              .manageProfileCombineState!.physicalAttrState!.heightController,
-          keyboard_type: TextInputType.number,
-          hint: "5.3",
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "Enter height";
-            }
-            return null;
-          },
+        GroupItemWithChild(
+          title: AppLocalizations.of(context)!.manage_profile_height,
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: MyTheme.solitude),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            height: 50,
+            child: DropdownButtonFormField(
+              isExpanded: true,
+              iconSize: 0.0,
+              decoration: InputDecoration(
+                hintText: "Select one",
+                isDense: true,
+                hintStyle: Styles.regular_gull_grey_12,
+                border: const OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                ),
+                suffixIcon: Icon(
+                  Icons.keyboard_arrow_down,
+                  color: MyTheme.gull_grey,
+                ),
+              ),
+              value: state.manageProfileCombineState!.physicalAttrState!
+                  .height,
+              items: state.manageProfileCombineState!
+                  .profiledropdownResponseData!.data!.heightList!
+                  .map<DropdownMenuItem>((e) {
+                return DropdownMenuItem(
+                  value: e.key,
+                  child: Text(
+                    e.value,
+                    style: Styles.regular_arsenic_14,
+                  ),
+                );
+              }).toList(),
+              onChanged: (newValue) {
+                state.manageProfileCombineState!.physicalAttrState!
+                    .height = newValue;
+              },
+            ),
+          ),
         ),
         Const.height20,
         BasicFormWidget(

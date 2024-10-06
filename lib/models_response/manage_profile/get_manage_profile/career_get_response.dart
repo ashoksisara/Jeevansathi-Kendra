@@ -46,6 +46,7 @@ class Data {
       this.occupation,
       this.businessType,
       this.monthlyIncome,
+      this.location,
       this.jobType});
 
   int? id;
@@ -54,6 +55,7 @@ class Data {
   int? start;
   dynamic end;
   dynamic present;
+  dynamic location;
   dynamic occupation;
   dynamic jobType;
   dynamic businessType;
@@ -69,6 +71,7 @@ class Data {
       occupation: json["occupation"],
       businessType: json["business_type"],
       monthlyIncome: json["monthly_income"],
+      location: json["location"],
       jobType: json["job_type"]);
 
   Map<String, dynamic> toJson() => {
@@ -77,6 +80,7 @@ class Data {
         "company": company,
         "start": start,
         "end": end,
+        "location": location,
         "present": present,
         "occupation" :occupation,
         "business_type" : businessType,

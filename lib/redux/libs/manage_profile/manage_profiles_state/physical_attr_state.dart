@@ -17,6 +17,7 @@ class PhysicalAttrState {
   TextEditingController? disabilityController = TextEditingController();
   // TextEditingController? bloodController = TextEditingController();
   dynamic bloodGroup;
+  dynamic height;
   Disability disability = Disability.No;
   PhysicalAttrData? physicalAttrData;
 
@@ -42,5 +43,6 @@ class PhysicalAttrState {
         bodyTypeController = TextEditingController(text: ''),
         disabilityController = TextEditingController(text: ''),
         physicalAttrData = null,
+        height = null,
         isLoading = false;
 }

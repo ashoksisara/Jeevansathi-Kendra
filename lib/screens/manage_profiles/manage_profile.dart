@@ -169,17 +169,17 @@ class _MyProfileState extends State<MyProfile> {
                             .presentAddressState!.presentAddressData)
                     .getBasicPercentage())
             .getWidget(context),
-      MyProfileListData(
-              title: "Change Your Email",
-              link: const ContactDetails(),
-              icon: 'assets/icon/icon_contactDetails.png',
-              pp: PP_UserContactDetails(
-                  userid: store.state.authState!.userData!.id!),
-              percentage: PercentageCalculator(
-                      data: store.state.manageProfileCombineState!.contactState!
-                          .contactData)
-                  .getBasicPercentage())
-          .getWidget(context),
+      // MyProfileListData(
+      //         title: "Change Your Email",
+      //         link: const ContactDetails(),
+      //         icon: 'assets/icon/icon_contactDetails.png',
+      //         pp: PP_UserContactDetails(
+      //             userid: store.state.authState!.userData!.id!),
+      //         percentage: PercentageCalculator(
+      //                 data: store.state.manageProfileCombineState!.contactState!
+      //                     .contactData)
+      //             .getBasicPercentage())
+      //     .getWidget(context),
       if (settingIsActive("member_education_section", "on"))
         MyProfileListData(
                 title: "Education Details",
@@ -742,8 +742,7 @@ class _MyProfileState extends State<MyProfile> {
                         .state
                         .manageProfileCombineState!
                         .profiledropdownResponseData!
-                        .data!
-                        .countryList!, (value) {
+                        .data?.countryList ?? [], (value) {
                   store.dispatch(
                       PexResidencyCountryAddValueAction(value: value));
                 },

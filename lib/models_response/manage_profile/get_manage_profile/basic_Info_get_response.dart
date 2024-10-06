@@ -42,6 +42,7 @@ class BasicInfoData {
     this.phone,
     this.maritialStatus,
     this.photo,
+    this.nriCountry
   });
 
   String? firsName;
@@ -53,6 +54,7 @@ class BasicInfoData {
   dynamic phone;
   dynamic maritialStatus;
   dynamic photo;
+  dynamic nriCountry;
 
   factory BasicInfoData.fromJson(Map<String, dynamic> json) => BasicInfoData(
         firsName: json["firs_name"],
@@ -64,6 +66,7 @@ class BasicInfoData {
         phone: json["phone"],
         maritialStatus: json["maritial_status"],
         photo: json["photo"],
+        nriCountry: json["nri_country"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -76,6 +79,7 @@ class BasicInfoData {
         "phone": phone,
         "maritial_status": maritialStatus,
         "photo": photo,
+        "nri_country": nriCountry,
       };
 }
 

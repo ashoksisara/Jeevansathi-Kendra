@@ -26,7 +26,7 @@ PhysicalAttrState? physical_attr_reducer(
     if (state!.formKey.currentState!.validate()) {
       store.dispatch(
         physicalAttrMiddleware(
-          height: state.heightController!.text,
+          height: state.height,
           weight: state.weightController!.text,
           eye_color: state.eyeColorController!.text,
           hair_color: state.hairColorController!.text,
@@ -45,7 +45,8 @@ PhysicalAttrState? physical_attr_reducer(
 }
 
 setPhysicalAttr(PhysicalAttrState? state) {
-  state!.heightController!.text = state.physicalAttrData!.height!.toString();
+  // state!.heightController!.text = state.physicalAttrData!.height!.toString();
+  state!.height = state.physicalAttrData?.height != null ? state.physicalAttrData!.height.toString() : null ;
   state.weightController!.text = state.physicalAttrData!.weight!.toString();
   state.eyeColorController!.text = state.physicalAttrData!.eyeColor!.toString();
   state.hairColorController!.text =

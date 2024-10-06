@@ -11,6 +11,7 @@ import 'package:active_matrimonial_flutter_app/helpers/main_helpers.dart';
 import 'package:active_matrimonial_flutter_app/models_response/common_models/ddown.dart';
 import 'package:active_matrimonial_flutter_app/screens/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 
@@ -27,7 +28,7 @@ class _BasicInformationState extends State<BasicInformation> {
 
   bool isUnmarried = false;
   bool isWithMe = false;
-
+  bool isNriCountrySelected = false;
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AppState>(
@@ -70,7 +71,9 @@ class _BasicInformationState extends State<BasicInformation> {
             style: Styles.bold_arsenic_12,
             controller: state
                 .manageProfileCombineState!.basicInfoState!.f_nameController,
+            inputFormatterList: [ FilteringTextInputFormatter.deny(RegExp('[0-9]'))],
             hint: "Sara B.",
+            readOnly: true,
             validator: (val) {
               if (val == null || val.isEmpty) {
                 return "Required field";
@@ -84,9 +87,11 @@ class _BasicInformationState extends State<BasicInformation> {
           BasicFormWidget(
             text: AppLocalizations.of(context)!.manage_profile_l_name,
             style: Styles.bold_arsenic_12,
+            inputFormatterList: [ FilteringTextInputFormatter.deny(RegExp('[0-9]'))],
             controller: state
                 .manageProfileCombineState!.basicInfoState!.l_nameController,
             hint: "Dron",
+            readOnly: true,
             validator: (val) {
               if (val == null || val.isEmpty) {
                 return "Required field";
@@ -139,12 +144,14 @@ class _BasicInformationState extends State<BasicInformation> {
                       ),
                     );
                   }).toList(),
-                  onChanged: (dynamic newValue) {
-                    setState(() {
-                      state.manageProfileCombineState!.basicInfoState!
-                          .gendervalue = newValue;
-                    });
-                  }),
+                onChanged: null,
+                  // onChanged: (dynamic newValue) {
+                  //   setState(() {
+                  //     state.manageProfileCombineState!.basicInfoState!
+                  //         .gendervalue = newValue;
+                  //   });
+                  // },
+              ),
             ),
           ),
           Const.height20,
@@ -159,19 +166,20 @@ class _BasicInformationState extends State<BasicInformation> {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              onPressed: () async {
-                DateTime? newDate = await showDatePicker(
-                  context: context,
-                  initialDate:
-                      state.manageProfileCombineState!.basicInfoState!.date,
-                  firstDate: DateTime(1923),
-                  lastDate: DateTime.now(),
-                );
-
-                if (newDate == null) return;
-                // setState(() => date = newDate.toString());
-                store.dispatch(SetBasicDate(payload: newDate));
-              },
+              // onPressed: () async {
+              //   DateTime? newDate = await showDatePicker(
+              //     context: context,
+              //     initialDate:
+              //         state.manageProfileCombineState!.basicInfoState!.date,
+              //     firstDate: DateTime(1923),
+              //     lastDate: DateTime.now(),
+              //   );
+              //
+              //   if (newDate == null) return;
+              //   // setState(() => date = newDate.toString());
+              //   store.dispatch(SetBasicDate(payload: newDate));
+              // },
+              onPressed: null,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 height: 35,
@@ -204,6 +212,9 @@ class _BasicInformationState extends State<BasicInformation> {
             controller: state
                 .manageProfileCombineState!.basicInfoState!.phoneController,
             hint: "320-243-2537",
+            keyboard_type: TextInputType.number,
+            readOnly: true,
+            inputFormatterList: [ FilteringTextInputFormatter.allow(RegExp('[0-9]'))],
             validator: (val) {
               if (val == null || val.isEmpty) {
                 return "Required field";
@@ -287,11 +298,62 @@ class _BasicInformationState extends State<BasicInformation> {
               ],
             ),
           ),
+          if(state.manageProfileCombineState!.basicInfoState!.nationality.name == 'NRI')
+          Const.height20,
+          if(state.manageProfileCombineState!.basicInfoState!.nationality.name == 'NRI')
+          GroupItemWithChild(
+            title: AppLocalizations.of(context)!
+                .nri_country,
+            child: Container(
+              height: 50,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: MyTheme.solitude),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: DropdownButtonFormField<dynamic>(
+                isExpanded: true,
+                iconSize: 0.0,
+                decoration: InputDecoration(
+                  hintText: "Select one",
+                  isDense: true,
+                  hintStyle: Styles.regular_gull_grey_12,
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                  ),
+                  suffixIcon: Icon(
+                    Icons.keyboard_arrow_down,
+                    color: MyTheme.gull_grey,
+                  ),
+                ),
+                value: state.manageProfileCombineState!.basicInfoState!
+                    .nri_country_value,
+                items: state.manageProfileCombineState!
+                    .profiledropdownResponseData!.data!.countryList!
+                    .map<DropdownMenuItem>((e) {
+                  return DropdownMenuItem(
+                    value: e,
+                    child: Text(
+                      e.name!,
+                      style: Styles.regular_arsenic_14,
+                    ),
+                  );
+                }).toList(),
+                onChanged: (dynamic newValue) {
+                  state.manageProfileCombineState!.basicInfoState!
+                      .nri_country_value = newValue;
+                  isNriCountrySelected = true;
+                  setState(() {
+
+                  });
+                },
+              ),
+            ),
+          ),
 
           //################################Type of visa####################################
-          if(state.manageProfileCombineState!.basicInfoState!.nationality.name == 'NRI')
+          if(state.manageProfileCombineState!.basicInfoState!.nationality.name == 'NRI' && isNriCountrySelected)
             Const.height20,
-          if(state.manageProfileCombineState!.basicInfoState!.nationality.name == 'NRI')
+          if(state.manageProfileCombineState!.basicInfoState!.nationality.name == 'NRI' && isNriCountrySelected)
           GroupItemWithChild(
             title: AppLocalizations.of(context)!
                 .type_of_visa,
@@ -376,13 +438,14 @@ class _BasicInformationState extends State<BasicInformation> {
                     ),
                   );
                 }).toList(),
-                onChanged: (dynamic newValue) {
-                  state.manageProfileCombineState!.basicInfoState!
-                      .marital_status_value = newValue;
-                  isUnmarried = state.manageProfileCombineState!.basicInfoState!
-                      .marital_status_value?.name == 'Unmarried';
-                  setState(() {});
-                },
+                // onChanged: (dynamic newValue) {
+                //   state.manageProfileCombineState!.basicInfoState!
+                //       .marital_status_value = newValue;
+                //   isUnmarried = state.manageProfileCombineState!.basicInfoState!
+                //       .marital_status_value?.name == 'Unmarried';
+                //   setState(() {});
+                // },
+                onChanged: null,
               ),
             ),
           ),
@@ -398,6 +461,7 @@ class _BasicInformationState extends State<BasicInformation> {
               controller: state.manageProfileCombineState!.basicInfoState!
                   .no_childController,
               keyboard_type: TextInputType.number,
+              inputFormatterList: [ FilteringTextInputFormatter.allow(RegExp('[0-9]'))],
               hint: "No of children",
               validator: (val) {
                 if (val == null || val.isEmpty) {
@@ -454,6 +518,7 @@ class _BasicInformationState extends State<BasicInformation> {
                 .howManyLivingController,
             hint: "No of children",
             keyboard_type: TextInputType.number,
+            inputFormatterList: [ FilteringTextInputFormatter.allow(RegExp('[0-9]'))],
             validator: (val) {
               if (val == null || val.isEmpty) {
                 return "Required field";
@@ -508,6 +573,47 @@ class _BasicInformationState extends State<BasicInformation> {
                 )
               ],
             ),
+          ),
+          Const.height20,
+          if(state.manageProfileCombineState?.basicInfoState?.image != null)
+          Column(
+            children: [
+              Image.file(
+                state.manageProfileCombineState!.basicInfoState!
+                    .image!,
+                fit: BoxFit.contain,
+                height: 100,
+                width: 100,
+              ),
+              Const.height5,
+              GestureDetector(
+                onTap: () {
+                  store.dispatch(
+                    SetBasicGalImage(
+                      imageName: '',
+                      image: null,
+                    ),
+                  );
+                },
+                child: Container(
+                  height: 25,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    border:
+                    Border.all(color: MyTheme.app_accent_color),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(6.0),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Delete",
+                      style: Styles.bold_arsenic_14,
+                    ),
+                  ),
+                ),
+              )
+            ],
           ),
           Const.height20,
           //###################################submit#################################

@@ -31,9 +31,11 @@ class _CareerInfoState extends State<CareerInfo> {
   final TextEditingController _companyController = TextEditingController();
   final TextEditingController _startController = TextEditingController();
   final TextEditingController _endController = TextEditingController();
+  final TextEditingController _monthlyIncomeController = TextEditingController();
+  final TextEditingController _locationController = TextEditingController();
   BusinessType businessType = BusinessType.Private;
   Occupation occupation = Occupation.Job;
-  dynamic jobType, monthlyIncome;
+  dynamic jobType;
 
   @override
   Widget build(BuildContext context) {
@@ -65,40 +67,40 @@ class _CareerInfoState extends State<CareerInfo> {
     );
   }
 
-  List<DropdownMenuItem> buildDropdownItems(jobTypes) {
-    List<DropdownMenuItem> dropdownItems = [];
-    jobTypes.forEach((section) {
-      dropdownItems.add(
-        DropdownMenuItem(
-          enabled: false, // Disable selection for the title
-          child: Text(
-            section.key,
-            style: Styles.regular_arsenic_14.copyWith(
-                fontWeight: FontWeight.bold
-            ),
-          ),
-        ),
-      );
-
-      // Add the jobs (selectable)
-      section.value.forEach((key, value) {
-        dropdownItems.add(
-          DropdownMenuItem(
-            value: value,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 6.0),
-              child: Text(
-                value,
-                style: Styles.regular_arsenic_14,
-              ),
-            ),
-          ),
-        );
-      });
-    });
-
-    return dropdownItems;
-  }
+  // List<DropdownMenuItem> buildDropdownItems(jobTypes) {
+  //   List<DropdownMenuItem> dropdownItems = [];
+  //   jobTypes.forEach((section) {
+  //     dropdownItems.add(
+  //       DropdownMenuItem(
+  //         enabled: false, // Disable selection for the title
+  //         child: Text(
+  //           section.key,
+  //           style: Styles.regular_arsenic_14.copyWith(
+  //               fontWeight: FontWeight.bold
+  //           ),
+  //         ),
+  //       ),
+  //     );
+  //
+  //     // Add the jobs (selectable)
+  //     section.value.forEach((key, value) {
+  //       dropdownItems.add(
+  //         DropdownMenuItem(
+  //           value: value,
+  //           child: Padding(
+  //             padding: const EdgeInsets.only(left: 6.0),
+  //             child: Text(
+  //               value,
+  //               style: Styles.regular_arsenic_14,
+  //             ),
+  //           ),
+  //         ),
+  //       );
+  //     });
+  //   });
+  //
+  //   return dropdownItems;
+  // }
 
   Widget build_body(BuildContext maincontext, AppState state) {
     return Expanded(
@@ -191,8 +193,17 @@ class _CareerInfoState extends State<CareerInfo> {
                                   .manageProfileCombineState!
                                   .careerState!
                                   .list[index].type,
-                              items: buildDropdownItems(state.manageProfileCombineState!
-                                  .profiledropdownResponseData!.data!.jobTypeList!),
+                              items: state.manageProfileCombineState!
+                                  .profiledropdownResponseData!.data!.jobTypeList!.map((e) => e.value).toList()
+                                  .map<DropdownMenuItem<dynamic>>((e) {
+                                return DropdownMenuItem<dynamic>(
+                                  value: e,
+                                  child: Text(
+                                    e,
+                                    style: Styles.regular_arsenic_14,
+                                  ),
+                                );
+                              }).toList(),
                               onChanged: (dynamic newValue) {
                                 jobType = newValue;
                                 state
@@ -345,54 +356,71 @@ class _CareerInfoState extends State<CareerInfo> {
                     height: 10,
                   ),
                   // Monthly income
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
                     children: [
-                      Text(
-                        AppLocalizations.of(context)!
-                            .monthly_income,
-                        style: Styles.bold_arsenic_12,
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      DropdownButtonFormField<dynamic>(
-                        isExpanded: true,
-                        iconSize: 0.0,
-                        decoration: InputDecoration(
-                          hintText: "Select one",
-                          isDense: true,
-                          hintStyle: Styles.regular_gull_grey_12,
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                          ),
-                          suffixIcon: Icon(
-                            Icons.keyboard_arrow_down,
-                            color: MyTheme.gull_grey,
-                          ),
-                        ),
-                        value: state
-                            .manageProfileCombineState!
-                            .careerState!
-                            .list[index].income,
-                        items: state.manageProfileCombineState!
-                            .profiledropdownResponseData!.data!.incomeList!.map((e) => e.value).toList()
-                            .map<DropdownMenuItem<dynamic>>((e) {
-                          return DropdownMenuItem<dynamic>(
-                            value: e,
-                            child: Text(
-                              e,
-                              style: Styles.regular_arsenic_14,
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!
+                                  .location,
+                              style: Styles.bold_arsenic_12,
                             ),
-                          );
-                        }).toList(),
-                        onChanged: (dynamic newValue) {
-                          state
-                              .manageProfileCombineState!
-                              .careerState!
-                              .list[index].income = newValue;
-                        },
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            SizedBox(
+                              child: TextFormField(
+                                decoration:
+                                InputStyle.inputDecoration_text_field(
+                                    hint: state
+                                        .manageProfileCombineState!
+                                        .careerState!
+                                        .list[index]
+                                        .location),
+                                controller: state
+                                    .manageProfileCombineState!
+                                    .careerState!
+                                    .list[index]
+                                    .location_controller,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!
+                                  .monthly_income,
+                              style: Styles.bold_arsenic_12,
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            SizedBox(
+                              child: TextFormField(
+                                decoration:
+                                InputStyle.inputDecoration_text_field(
+                                    hint: state
+                                        .manageProfileCombineState!
+                                        .careerState!
+                                        .list[index]
+                                        .monthly_income),
+                                controller: state
+                                    .manageProfileCombineState!
+                                    .careerState!
+                                    .list[index]
+                                    .monthly_income_controller,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -524,7 +552,7 @@ class _CareerInfoState extends State<CareerInfo> {
                                     .manageProfileCombineState!
                                     .careerState!
                                     .list[index]
-                                    .income,
+                                    .monthly_income_controller.text,
                                 type:  state
                                     .manageProfileCombineState!
                                     .careerState!
@@ -541,7 +569,9 @@ class _CareerInfoState extends State<CareerInfo> {
                                     .careerState!
                                     .list[index]
                                     .occupation_controller
-                                    .text
+                                    .text,
+                                location: state.manageProfileCombineState!.careerState!.
+                                  list[index].location_controller.text
                               ));
                             }
                           },
@@ -697,8 +727,17 @@ class _CareerInfoState extends State<CareerInfo> {
                                       ),
                                       value: state.manageProfileCombineState!.careerState!
                                           .job_type_value,
-                                      items: buildDropdownItems(state.manageProfileCombineState!
-                                          .profiledropdownResponseData!.data!.jobTypeList!),
+                                      items: state.manageProfileCombineState!
+                                          .profiledropdownResponseData!.data!.jobTypeList!.map((e) => e.value).toList()
+                                          .map<DropdownMenuItem<dynamic>>((e) {
+                                        return DropdownMenuItem<dynamic>(
+                                          value: e,
+                                          child: Text(
+                                            e,
+                                            style: Styles.regular_arsenic_14,
+                                          ),
+                                        );
+                                      }).toList(),
                                       onChanged: (dynamic newValue) {
                                         jobType = newValue;
                                       },
@@ -736,46 +775,6 @@ class _CareerInfoState extends State<CareerInfo> {
                                         ),
                                         Text(AppLocalizations.of(context)!.partnership)
                                       ],
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10
-                                  ),
-                                  GroupItemWithChild(
-                                    title: AppLocalizations.of(context)!
-                                        .monthly_income,
-                                    style: Styles.bold_arsenic_12,
-                                    child: DropdownButtonFormField<dynamic>(
-                                      isExpanded: true,
-                                      iconSize: 0.0,
-                                      decoration: InputDecoration(
-                                        hintText: "Select one",
-                                        isDense: true,
-                                        hintStyle: Styles.regular_gull_grey_12,
-                                        border: const OutlineInputBorder(
-                                          borderSide: BorderSide.none,
-                                        ),
-                                        suffixIcon: Icon(
-                                          Icons.keyboard_arrow_down,
-                                          color: MyTheme.gull_grey,
-                                        ),
-                                      ),
-                                      value: state.manageProfileCombineState!.careerState!
-                                          .income_list_value,
-                                      items: state.manageProfileCombineState!
-                                          .profiledropdownResponseData!.data!.incomeList!
-                                          .map<DropdownMenuItem<dynamic>>((e) {
-                                        return DropdownMenuItem<dynamic>(
-                                          value: e,
-                                          child: Text(
-                                            e.value,
-                                            style: Styles.regular_arsenic_14,
-                                          ),
-                                        );
-                                      }).toList(),
-                                      onChanged: (dynamic newValue) {
-                                        monthlyIncome = newValue;
-                                      },
                                     ),
                                   ),
                                   const SizedBox(
@@ -819,6 +818,26 @@ class _CareerInfoState extends State<CareerInfo> {
                                     controller: _endController,
                                     style: Styles.bold_arsenic_12,
                                     keyboard_type: TextInputType.number,
+                                  ),
+                                  const SizedBox(
+                                      height: 10
+                                  ),
+                                  BasicFormWidget(
+                                    text: AppLocalizations.of(context)!
+                                        .location,
+                                    hint: "Location",
+                                    controller: _locationController,
+                                    style: Styles.bold_arsenic_12,
+                                  ),
+                                  const SizedBox(
+                                      height: 10
+                                  ),
+                                  BasicFormWidget(
+                                    text: AppLocalizations.of(context)!
+                                        .monthly_income,
+                                    hint: "Monthly Income",
+                                    controller: _monthlyIncomeController,
+                                    style: Styles.bold_arsenic_12,
                                   ),
                                 ],
                               ),
@@ -875,7 +894,8 @@ class _CareerInfoState extends State<CareerInfo> {
                                     type: jobType,
                                     occupation: occupation.name,
                                     businessType: isJob ? null : businessType.name,
-                                    monthlyIncome: monthlyIncome.value
+                                    monthlyIncome: _monthlyIncomeController.text,
+                                    location: _locationController.text
                                   ),
                                 );
 
@@ -883,10 +903,11 @@ class _CareerInfoState extends State<CareerInfo> {
                                 _companyController.clear();
                                 _startController.clear();
                                 _endController.clear();
+                                _monthlyIncomeController.clear();
+                                _locationController.clear();
                                 occupation = Occupation.Job;
                                 businessType = BusinessType.Private;
                                 jobType = null;
-                                monthlyIncome = null;
                               }
                             },
                           )

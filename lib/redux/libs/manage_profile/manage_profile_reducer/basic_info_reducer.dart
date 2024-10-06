@@ -44,7 +44,8 @@ BasicInfoState? basic_info_reducer(BasicInfoState? state, dynamic action) {
           childrenLivingWithMe: state.howManyLivingController!.text,
           childrenLivingWith: state.childrenLivingWith.name,
           typeOfVisa: state.type_of_visa_value?.value,
-          nationality: state.nationality.name
+          nationality: state.nationality.name,
+          country: state.nri_country_value
         ),
       );
     }

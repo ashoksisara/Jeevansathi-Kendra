@@ -53,6 +53,15 @@ class _SpiritualSocialState extends State<SpiritualSocial> {
               ?.data
               ?.subCaste ??
               "";
+          store.state.manageProfileCombineState?.spiritualSocialState
+              ?.casteController.text = store
+              .state
+              .manageProfileCombineState
+              ?.spiritualSocialState
+              ?.spiritualSocialGetResponse
+              ?.data
+              ?.casteId ??
+              "";
           store.state.manageProfileCombineState!.spiritualSocialState!
               .personalController.text = store
                   .state
@@ -148,7 +157,7 @@ class _SpiritualSocialState extends State<SpiritualSocial> {
                           .spiritualSocialState!.religion_val?.id ??
                       0,
                   caste: state.manageProfileCombineState!
-                          .spiritualSocialState!.caste_val?.id ??
+                          .spiritualSocialState!.casteController.text ??
                       0,
                   sub_caste: state.manageProfileCombineState!
                       .spiritualSocialState!.subCasteController.text,
@@ -245,65 +254,75 @@ class _SpiritualSocialState extends State<SpiritualSocial> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          AppLocalizations.of(context)!.manage_profile_caste,
-          style: Styles.bold_arsenic_12,
+        BasicFormWidget(
+          text: AppLocalizations.of(context)!.manage_profile_caste,
+          hint: 'Caste',
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Caste required";
+            }
+          },
+          controller: state.manageProfileCombineState!.spiritualSocialState!.casteController,
         ),
-        const SizedBox(
-          height: 5,
-        ),
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8), color: MyTheme.solitude),
-          height: 50,
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: DropdownButtonFormField<DDown>(
-            isExpanded: true,
-            iconSize: 0.0,
-            value: state
-                .manageProfileCombineState!.spiritualSocialState!.caste_val,
-            validator: (value) {
-              if (value == null || value.id == null) {
-                return "Caste required";
-              }
-              return null;
-            },
-            decoration: InputDecoration(
-              hintText: "Select One",
-              isDense: true,
-              hintStyle: Styles.regular_gull_grey_12,
-              border: const OutlineInputBorder(
-                borderSide: BorderSide.none,
-              ),
-              suffixIcon: Icon(
-                Icons.keyboard_arrow_down,
-                color: MyTheme.gull_grey,
-              ),
-              // helperText: 'Helper text',
-            ),
-            items: state.manageProfileCombineState!.spiritualSocialState!
-                .casteResponse!.data!
-                .map<DropdownMenuItem<DDown>>((e) {
-              return DropdownMenuItem<DDown>(
-                value: e,
-                child: Text(
-                  e.name!,
-                  style: Styles.regular_gull_grey_12
-                      .copyWith(color: MyTheme.black),
-                ),
-              );
-            }).toList(),
-            onChanged: (DDown? newValue) {
-              store.dispatch(AddCasteValueAction(value: newValue));
-
-              if (state.manageProfileCombineState!.spiritualSocialState!
-                  .subcasteResponse!.data!.isNotEmpty) {
-                store.dispatch(EmptySubCasteAction());
-              }
-              store.dispatch(subcasteMiddleware(newValue!.id));
-            },
-          ),
-        ),
+        // Text(
+        //   AppLocalizations.of(context)!.manage_profile_caste,
+        //   style: Styles.bold_arsenic_12,
+        // ),
+        // const SizedBox(
+        //   height: 5,
+        // ),
+        // Container(
+        //   decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(8), color: MyTheme.solitude),
+        //   height: 50,
+        //   padding: const EdgeInsets.symmetric(horizontal: 10),
+        //   child: DropdownButtonFormField<DDown>(
+        //     isExpanded: true,
+        //     iconSize: 0.0,
+        //     value: state
+        //         .manageProfileCombineState!.spiritualSocialState!.caste_val,
+        //     validator: (value) {
+        //       if (value == null || value.id == null) {
+        //         return "Caste required";
+        //       }
+        //       return null;
+        //     },
+        //     decoration: InputDecoration(
+        //       hintText: "Select One",
+        //       isDense: true,
+        //       hintStyle: Styles.regular_gull_grey_12,
+        //       border: const OutlineInputBorder(
+        //         borderSide: BorderSide.none,
+        //       ),
+        //       suffixIcon: Icon(
+        //         Icons.keyboard_arrow_down,
+        //         color: MyTheme.gull_grey,
+        //       ),
+        //       // helperText: 'Helper text',
+        //     ),
+        //     items: state.manageProfileCombineState!.spiritualSocialState!
+        //         .casteResponse!.data!
+        //         .map<DropdownMenuItem<DDown>>((e) {
+        //       return DropdownMenuItem<DDown>(
+        //         value: e,
+        //         child: Text(
+        //           e.name!,
+        //           style: Styles.regular_gull_grey_12
+        //               .copyWith(color: MyTheme.black),
+        //         ),
+        //       );
+        //     }).toList(),
+        //     onChanged: (DDown? newValue) {
+        //       store.dispatch(AddCasteValueAction(value: newValue));
+        //
+        //       if (state.manageProfileCombineState!.spiritualSocialState!
+        //           .subcasteResponse!.data!.isNotEmpty) {
+        //         store.dispatch(EmptySubCasteAction());
+        //       }
+        //       store.dispatch(subcasteMiddleware(newValue!.id));
+        //     },
+        //   ),
+        // ),
         const SizedBox(
           height: 20,
         ),

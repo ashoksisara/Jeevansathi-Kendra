@@ -91,7 +91,8 @@ ThunkAction<AppState> careerGetMiddleware() {
             end_controller: TextEditingController(text: element.end.toString()),
             occupation_controller: TextEditingController(text: element.occupation.toString()),
             type: element.jobType.toString(),
-            income: element.monthlyIncome.toString()
+            monthly_income_controller: TextEditingController(text: element.monthlyIncome),
+            location_controller: TextEditingController(text: element.location)
           ),
         );
       });

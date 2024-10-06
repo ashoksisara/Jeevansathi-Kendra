@@ -77,7 +77,7 @@ class _EducationInfoState extends State<EducationInfo> {
           ),
           itemBuilder: (BuildContext context, int index) {
             return Container(
-              padding: EdgeInsets.only(left: 8, right: 8, top: 10, bottom: 10),
+              padding: const EdgeInsets.only(left: 8, right: 8, top: 10, bottom: 10),
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: const BorderRadius.all(
@@ -121,7 +121,7 @@ class _EducationInfoState extends State<EducationInfo> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Expanded(
@@ -158,7 +158,7 @@ class _EducationInfoState extends State<EducationInfo> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -196,7 +196,7 @@ class _EducationInfoState extends State<EducationInfo> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Expanded(
@@ -230,7 +230,7 @@ class _EducationInfoState extends State<EducationInfo> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -261,7 +261,7 @@ class _EducationInfoState extends State<EducationInfo> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
                   Row(
@@ -286,7 +286,7 @@ class _EducationInfoState extends State<EducationInfo> {
                             decoration: BoxDecoration(
                               border:
                                   Border.all(color: MyTheme.app_accent_color),
-                              borderRadius: BorderRadius.all(
+                              borderRadius: const BorderRadius.all(
                                 Radius.circular(6.0),
                               ),
                             ),
@@ -309,7 +309,7 @@ class _EducationInfoState extends State<EducationInfo> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Expanded(
@@ -361,13 +361,13 @@ class _EducationInfoState extends State<EducationInfo> {
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 begin: Alignment.topLeft,
-                                end: Alignment(0.8, 1),
+                                end: const Alignment(0.8, 1),
                                 colors: [
                                   MyTheme.gradient_color_1,
                                   MyTheme.gradient_color_2,
                                 ],
                               ),
-                              borderRadius: BorderRadius.all(
+                              borderRadius: const BorderRadius.all(
                                 Radius.circular(6.0),
                               ),
                             ),
@@ -415,7 +415,7 @@ class _EducationInfoState extends State<EducationInfo> {
             ),
             IconButton(
                 padding: EdgeInsets.zero,
-                constraints: BoxConstraints(),
+                constraints: const BoxConstraints(),
                 onPressed: () {
                   OneContext().showDialog<void>(
                     builder: (context) {
@@ -454,7 +454,7 @@ class _EducationInfoState extends State<EducationInfo> {
                                 controller: _degreeController,
                                 style: Styles.bold_arsenic_12,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               BasicFormWidget(
@@ -464,7 +464,7 @@ class _EducationInfoState extends State<EducationInfo> {
                                 controller: _institutionController,
                                 style: Styles.bold_arsenic_12,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               BasicFormWidget(
@@ -475,7 +475,7 @@ class _EducationInfoState extends State<EducationInfo> {
                                 style: Styles.bold_arsenic_12,
                                 keyboard_type: TextInputType.number,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               BasicFormWidget(
@@ -496,7 +496,7 @@ class _EducationInfoState extends State<EducationInfo> {
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   begin: Alignment.topLeft,
-                                  end: Alignment(0.8, 1),
+                                  end: const Alignment(0.8, 1),
                                   colors: [
                                     MyTheme.gradient_color_1,
                                     MyTheme.gradient_color_2,
@@ -549,7 +549,7 @@ class _EducationInfoState extends State<EducationInfo> {
                     },
                   );
                 },
-                icon: Icon(Icons.add))
+                icon: const Icon(Icons.add))
           ],
         ),
         const SizedBox(

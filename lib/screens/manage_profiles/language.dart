@@ -113,86 +113,22 @@ class _LanguageState extends State<Language> {
   }
 
   Widget build_known_language(BuildContext context, LanguageState? state) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          AppLocalizations.of(context)!.public_profile_known_language,
-          style: Styles.bold_arsenic_12,
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8), color: MyTheme.solitude),
-          height: 50,
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: DropDownMultiSelect<DDown>(
-            icon: Icon(
-              Icons.keyboard_arrow_down,
-              color: MyTheme.gull_grey,
-              size: 20.0,
-            ),
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-              ),
-            ),
-            options: store.state.manageProfileCombineState!
-                .profiledropdownResponseData!.data!.languageList!,
-            menuItembuilder: (data) {
-              return StatefulBuilder(builder: (context, snapshot) {
-                return Row(
-                  children: [
-                    Checkbox(
-                        value: state?.selectedKnowLanguage.contains(data),
-                        onChanged: (onChanged) {
-                          if (onChanged != null) {
-                            if (onChanged) {
-                              state?.selectedKnowLanguage.add(data);
-                              store.dispatch(UpdateKnowLanguage(
-                                  state!.selectedKnowLanguage));
-                            } else {
-                              state?.selectedKnowLanguage.remove(data);
-                            }
-                          }
-                          store.dispatch(
-                              UpdateKnowLanguage(state!.selectedKnowLanguage));
-                          snapshot(() {});
-                        }),
-                    Text(data.name ?? ""),
-                  ],
-                );
-              });
-            },
-            childBuilder: (list) {
-              return Row(
-                children: List.generate(
-                    list.length, (index) => Text("${list[index].name} " ?? "")),
-              );
-            },
-            selectedValues: state?.selectedKnowLanguage ?? [],
-            onChanged: (value) {
-              List<DDown> selectedIds = [];
-              for (var selectedName in value) {
-                var language = store.state.manageProfileCombineState!
-                    .profiledropdownResponseData!.data!.languageList!
-                    .firstWhere((lang) => lang.id == selectedName.id);
-                selectedIds.add(language);
-              }
+    return  MultiSelectDropdown(items: store.state.manageProfileCombineState!
+        .profiledropdownResponseData!.data!.languageList!,
+      title: AppLocalizations.of(context)!.public_profile_known_language,
+      onSelectionChanged: (value) {
+        List<DDown> selectedIds = [];
+        for (var selectedName in value) {
+          var language = store.state.manageProfileCombineState!
+              .profiledropdownResponseData!.data!.languageList!
+              .firstWhere((lang) => lang.id == selectedName.id);
+          selectedIds.add(language);
+        }
+        state!.selectedKnowLanguage.clear();
+        state.update(selectedKnowLanguage: selectedIds);
+      },
+      selectedItems: state?.selectedKnowLanguage ?? [],
 
-              if (value == null) return;
-              state!.selectedKnowLanguage.clear();
-              state.update(selectedKnowLanguage: selectedIds);
-            },
-            whenEmpty: "No data found",
-          ),
-        ),
-        const SizedBox(
-          height: 40,
-        ),
-      ],
     );
   }
 
@@ -207,6 +143,7 @@ class _LanguageState extends State<Language> {
         Const.height25,
         build_mother_tongue(context, state),
         build_known_language(context, state),
+        Const.height40,
         buildSaveChanges(state, context)
       ],
     );

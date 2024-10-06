@@ -5,6 +5,7 @@ import 'package:active_matrimonial_flutter_app/const/style.dart';
 import 'package:active_matrimonial_flutter_app/helpers/device_info.dart';
 import 'package:active_matrimonial_flutter_app/screens/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../components/common_widget.dart';
@@ -57,6 +58,7 @@ class _IntroductionState extends State<Introduction> {
             controller: state
                 .manageProfileCombineState!.introductionState!.textController,
             decoration: const InputDecoration.collapsed(hintText: "Text..."),
+            inputFormatters: [ FilteringTextInputFormatter.deny(RegExp('[0-9]'))],
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter Introduction';

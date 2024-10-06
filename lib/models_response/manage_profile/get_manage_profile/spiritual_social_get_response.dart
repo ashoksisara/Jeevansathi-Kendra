@@ -56,7 +56,7 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         religionId: json["religion_id"] == null ? null : json["religion_id"],
-        casteId: json["caste_id"] == null ? null : json["caste_id"],
+        casteId: json["caste"] == null ? null : json["caste"],
         subCasteId: json["sub_caste_id"] == null ? null : json["sub_caste_id"],
     subCaste: json["sub_caste"] == null ? null : json["sub_caste"],
         ethnicity: json["ethnicity"],
@@ -68,7 +68,7 @@ class Data {
 
   Map<String, dynamic> toJson() => {
         "religion_id": religionId == null ? null : religionId,
-        "caste_id": casteId == null ? null : casteId,
+        "member_caste": casteId == null ? null : casteId,
         "sub_caste_id": subCasteId == null ? null : subCasteId,
         "ethnicity": ethnicity,
         "sub_caste": subCaste,

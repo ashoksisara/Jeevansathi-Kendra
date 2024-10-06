@@ -418,6 +418,7 @@
   "nationality": "Nationality",
   "indian": "Indian",
   "nri": "NRI",
+  "nri_country": "NRI Country",
   "type_of_visa": "Type of Visa",
   "occupation": "Occupation",
   "type": "Type",
@@ -433,5 +434,6 @@
   "sister": "Sister",
   "relation": "Relation",
   "married": "Married",
-  "unmarried": "Unmarried"
+  "unmarried": "Unmarried",
+  "location": "Location"
 }

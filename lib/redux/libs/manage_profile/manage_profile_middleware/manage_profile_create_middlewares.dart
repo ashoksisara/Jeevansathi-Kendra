@@ -37,6 +37,7 @@ ThunkAction<AppState> careerCreateMiddleware(
     dynamic end,
     dynamic occupation,
     dynamic type,
+    dynamic location,
     dynamic monthlyIncome,
     dynamic businessType}) {
   return (Store<AppState> store) async {
@@ -52,6 +53,7 @@ ThunkAction<AppState> careerCreateMiddleware(
         businessType: businessType,
         occupation: occupation,
         type: type,
+        location: location
       );
 
       store.dispatch(ShowMessageAction(

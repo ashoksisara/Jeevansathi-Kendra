@@ -1,5 +1,6 @@
 import 'package:active_matrimonial_flutter_app/components/common_input.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class BasicFormWidget extends StatelessWidget {
   final text;
@@ -10,6 +11,8 @@ class BasicFormWidget extends StatelessWidget {
   final keyboard_type;
   final validator;
   final style;
+  final List<TextInputFormatter>? inputFormatterList;
+  final bool readOnly;
 
   BasicFormWidget({Key? key,
     this.text,
@@ -19,6 +22,8 @@ class BasicFormWidget extends StatelessWidget {
     this.max_line,
     this.keyboard_type,
     this.validator,
+    this.inputFormatterList,
+    this.readOnly = false,
     this.style})
       : super(key: key);
 
@@ -44,6 +49,8 @@ class BasicFormWidget extends StatelessWidget {
             maxLines: max_line,
             keyboardType: keyboard_type,
             controller: controller,
+            readOnly: readOnly,
+            inputFormatters: inputFormatterList,
             decoration: InputStyle.inputDecoration_text_field(hint: hint),
           ),
         ),
@@ -89,15 +96,18 @@ class EducationViewModel {
 class CareerViewModel {
   final occupation;
   dynamic type;
-  dynamic income;
   final designation_text;
   final company_text;
   final start;
   final id;
   final present;
   final end;
+  final monthly_income;
+  final location;
   final occupation_controller;
+  final monthly_income_controller;
   final designation_controller;
+  final location_controller;
   final company_controller;
   final start_controller;
   final end_controller;
@@ -106,12 +116,15 @@ class CareerViewModel {
     this.id,
     this.occupation,
     this.type,
-    this.income,
     this.present,
+    this.monthly_income_controller,
     this.company_text,
     this.start,
+    this.location,
     this.end,
+    this.monthly_income,
     this.designation_controller,
+    this.location_controller,
     this.occupation_controller,
     this.company_controller,
     this.start_controller,

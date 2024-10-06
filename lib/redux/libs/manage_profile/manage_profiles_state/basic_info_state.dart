@@ -32,6 +32,7 @@ class BasicInfoState {
   DDown? marital_status_value;
   DDown? on_behalves_value;
   dynamic type_of_visa_value;
+  dynamic nri_country_value;
   String? gendervalue = "Male";
 
   DateTime date;

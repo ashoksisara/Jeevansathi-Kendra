@@ -60,6 +60,7 @@ class ProfiledropdownResponseData {
       this.countryList,
       this.visaList,
       this.jobTypeList,
+        this.heightList,
       this.bloodGroupList,
       this.incomeList});
 
@@ -73,6 +74,7 @@ class ProfiledropdownResponseData {
   List<dynamic>? jobTypeList = <dynamic>[];
   List<dynamic>? incomeList = <dynamic>[];
   List<dynamic>? bloodGroupList = <dynamic>[];
+  List<dynamic>? heightList = <dynamic>[];
 
   factory ProfiledropdownResponseData.fromJson(Map<String, dynamic> json) =>
       ProfiledropdownResponseData(
@@ -115,6 +117,10 @@ class ProfiledropdownResponseData {
             ? null
             : List<dynamic>.from(
                 json["blood_group"].entries.map((x) => x).toList()),
+        heightList: json["blood_group"] == null
+            ? null
+            : List<dynamic>.from(
+                json["height"].entries.map((x) => x).toList()),
       );
 
   Map<String, dynamic> toJson() => {
@@ -142,5 +148,8 @@ class ProfiledropdownResponseData {
         "income_list": incomeList == null
             ? null
             : List<dynamic>.from(incomeList!.map((x) => x)),
+    "height": heightList == null
+        ? null
+        : List<dynamic>.from(heightList!.map((x) => x)),
       };
 }

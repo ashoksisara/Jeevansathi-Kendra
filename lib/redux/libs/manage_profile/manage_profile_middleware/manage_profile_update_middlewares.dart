@@ -34,6 +34,7 @@ ThunkAction<AppState> basicInfoUpdateMiddleware(
     dynamic m_status,
     dynamic noofChild,
     dynamic nationality,
+    dynamic country,
     dynamic typeOfVisa,
     dynamic childrenLivingWith,
     dynamic childrenLivingWithMe,
@@ -54,6 +55,7 @@ ThunkAction<AppState> basicInfoUpdateMiddleware(
         childrenLivingWith: childrenLivingWith,
         childrenLivingWithMe: childrenLivingWithMe,
         nationality: nationality,
+        country: country,
         typeOfVisa: typeOfVisa);
     // print(response.toJson());
 
@@ -267,6 +269,7 @@ ThunkAction<AppState> careerUpdateMiddleware(
     dynamic type,
     dynamic monthlyIncome,
     dynamic businessType,
+    dynamic location,
     dynamic id}) {
   return (Store<AppState> store) async {
     store.dispatch(CareerLoader.update_change);
@@ -281,6 +284,7 @@ ThunkAction<AppState> careerUpdateMiddleware(
           monthlyIncome: monthlyIncome,
           occupation: occupation,
           type: type,
+          location: location,
           id: id);
 
       store.dispatch(ShowMessageAction(

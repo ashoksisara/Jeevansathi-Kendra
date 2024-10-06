@@ -54,6 +54,7 @@ class ManageProfileRepository {
     dynamic nationality,
     dynamic typeOfVisa,
     dynamic childrenLivingWith,
+    dynamic country,
     dynamic childrenLivingWithMe,
   }) async {
     var baseUrl = "${AppConfig.BASE_URL}/member/basic-info/update";
@@ -77,6 +78,7 @@ class ManageProfileRepository {
       request.fields["children_living_with"] = childrenLivingWith;
     if (childrenLivingWithMe != null)
       request.fields["children_living_with_me"] = childrenLivingWithMe;
+    request.fields["nri_country"] = country ?? '';
 
     // print(photo?.path != null);
 
@@ -330,6 +332,7 @@ class ManageProfileRepository {
       dynamic occupation,
       dynamic type,
       dynamic businessType,
+      dynamic location,
       dynamic monthlyIncome,
       dynamic end}) async {
     var baseUrl = "${AppConfig.BASE_URL}/member/career";
@@ -343,7 +346,8 @@ class ManageProfileRepository {
       "occupation": occupation,
       "job_type": type,
       "business_type": businessType,
-      "monthly_income": monthlyIncome
+      "monthly_income": monthlyIncome,
+      "location": location,
     });
 
     var response = await http.post(Uri.parse(baseUrl),
@@ -365,6 +369,7 @@ class ManageProfileRepository {
       dynamic end,
       dynamic occupation,
       dynamic type,
+      dynamic location,
       dynamic monthlyIncome,
       dynamic businessType,
       dynamic id}) async {
@@ -379,7 +384,8 @@ class ManageProfileRepository {
       "occupation": occupation,
       "job_type": type,
       "business_type": businessType,
-      "monthly_income": monthlyIncome
+      "monthly_income": monthlyIncome,
+      "location": location
     });
 
     var response = await http.put(Uri.parse(baseUrl),
@@ -939,7 +945,7 @@ class ManageProfileRepository {
     var accessToken = prefs.getString(Const.accessToken);
     var postBody = jsonEncode({
       "member_religion_id": religion,
-      "member_caste_id": caste,
+      "member_caste": caste,
       "member_sub_caste": sub_caste,
       "ethnicity": ethnicity,
       "personal_value": personal_value,
